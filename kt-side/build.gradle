@@ -1,0 +1,71 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '2.0.20'
+    id "org.jetbrains.intellij" version "1.17.4"
+    id 'com.jetbrains.rdgen' version '2023.3.2'      // See https://github.com/JetBrains/rd/releases
+}
+
+//ext {
+//    isWindows = Os.isFamily(Os.FAMILY_WINDOWS)
+//    rdLibDirectory = {
+//        new File(setupDependencies.idea.get().classes, "lib/rd")
+//    }
+//}
+
+intellij {
+    version = "2023.1.1"
+    downloadSources = false
+}
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    maven { url 'https://cache-redirector.jetbrains.com/intellij-repository/snapshots' }
+    maven { url 'https://cache-redirector.jetbrains.com/maven-central' }
+}
+
+dependencies {
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+    implementation 'com.jetbrains.rd:rd-gen:2024.3.0'
+    implementation 'com.jetbrains.rd:rd-framework:2024.3.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+kotlin {
+    jvmToolchain(17)
+}
+ext {
+    rdLibDirectory = {
+        new File(setupDependencies.idea.get().classes, "lib/rd")
+    }
+}
+rdgen {
+    def modelDir = new File(rootDir, "src/main/kotlin/")
+    def csOutput = new File(rootDir, "src/generated/net")
+    def ktOutput = new File(rootDir, "src/generated/kt")
+
+    verbose = true
+//    classpath {
+//        "${rdLibDirectory()}/rider-model.jar"
+//    }
+    sources "${modelDir}"
+    hashFolder = "${buildDir}"
+    packages = "org.example"
+
+    generator {
+        language = "kotlin"
+        transform = "asis"
+        root = "org.example.DemoRoot"
+        namespace = "com.jetbrains.rider.model"
+        directory = "$ktOutput"
+    }
+
+    generator {
+        language = "csharp"
+        transform = "reversed"
+        root = "org.example.DemoRoot"
+        namespace = "JetBrains.Rider.Model"
+        directory = "$csOutput"
+    }
+}
