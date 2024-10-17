@@ -36,7 +36,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:16</p>
+  /// <p>Generated from: Model.kt:14</p>
   /// </summary>
   public class DemoRoot : RdExtBase
   {
@@ -63,8 +63,10 @@ namespace JetBrains.Rider.Model
       
       serializers.RegisterToplevelOnce(typeof(DemoRoot), DemoRoot.RegisterDeclaredTypesSerializers);
       serializers.RegisterToplevelOnce(typeof(DemoModel), DemoModel.RegisterDeclaredTypesSerializers);
+      serializers.RegisterToplevelOnce(typeof(SimpleModel), SimpleModel.RegisterDeclaredTypesSerializers);
       serializers.RegisterToplevelOnce(typeof(ClassExtModel), ClassExtModel.RegisterDeclaredTypesSerializers);
       serializers.RegisterToplevelOnce(typeof(ExtModel), ExtModel.RegisterDeclaredTypesSerializers);
+      serializers.RegisterToplevelOnce(typeof(SimpleExtModel), SimpleExtModel.RegisterDeclaredTypesSerializers);
     }
     
     public DemoRoot(Lifetime lifetime, IProtocol protocol) : this()

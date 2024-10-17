@@ -36,7 +36,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:28</p>
+  /// <p>Generated from: Model.kt:20</p>
   /// </summary>
   public class DemoModel : RdExtBase
   {
@@ -55,7 +55,6 @@ namespace JetBrains.Rider.Model
     [NotNull] public IViewableProperty<string> Interned_string => _Interned_string;
     [NotNull] public IViewableProperty<Base> Polymorphic => _Polymorphic;
     [NotNull] public IViewableProperty<OpenDerived> Polymorphic_open => _Polymorphic_open;
-    [NotNull] public IViewableProperty<MyEnum> Enum => _Enum;
     [NotNull] public IViewableProperty<DateTime> Date => _Date;
     [NotNull] public IViewableProperty<TimeSpan> Duration => _Duration;
     [NotNull] public IViewableProperty<string> Property_with_default => _Property_with_default;
@@ -80,7 +79,6 @@ namespace JetBrains.Rider.Model
     [NotNull] private readonly RdProperty<string> _Interned_string;
     [NotNull] private readonly RdProperty<Base> _Polymorphic;
     [NotNull] private readonly RdProperty<OpenDerived> _Polymorphic_open;
-    [NotNull] private readonly RdProperty<MyEnum> _Enum;
     [NotNull] private readonly RdProperty<DateTime> _Date;
     [NotNull] private readonly RdProperty<TimeSpan> _Duration;
     [NotNull] private readonly RdProperty<string> _Property_with_default;
@@ -106,7 +104,6 @@ namespace JetBrains.Rider.Model
       [NotNull] RdProperty<string> interned_string,
       [NotNull] RdProperty<Base> polymorphic,
       [NotNull] RdProperty<OpenDerived> polymorphic_open,
-      [NotNull] RdProperty<MyEnum> @enum,
       [NotNull] RdProperty<DateTime> date,
       [NotNull] RdProperty<TimeSpan> duration,
       [NotNull] RdProperty<string> property_with_default,
@@ -131,7 +128,6 @@ namespace JetBrains.Rider.Model
       if (interned_string == null) throw new ArgumentNullException("interned_string");
       if (polymorphic == null) throw new ArgumentNullException("polymorphic");
       if (polymorphic_open == null) throw new ArgumentNullException("polymorphic_open");
-      if (@enum == null) throw new ArgumentNullException("enum");
       if (date == null) throw new ArgumentNullException("date");
       if (duration == null) throw new ArgumentNullException("duration");
       if (property_with_default == null) throw new ArgumentNullException("property_with_default");
@@ -155,7 +151,6 @@ namespace JetBrains.Rider.Model
       _Interned_string = interned_string;
       _Polymorphic = polymorphic;
       _Polymorphic_open = polymorphic_open;
-      _Enum = @enum;
       _Date = date;
       _Duration = duration;
       _Property_with_default = property_with_default;
@@ -176,7 +171,6 @@ namespace JetBrains.Rider.Model
       _Interned_string.OptimizeNested = true;
       _Polymorphic.OptimizeNested = true;
       _Polymorphic_open.OptimizeNested = true;
-      _Enum.OptimizeNested = true;
       _Date.OptimizeNested = true;
       _Duration.OptimizeNested = true;
       _Property_with_default.OptimizeNested = true;
@@ -198,7 +192,6 @@ namespace JetBrains.Rider.Model
       BindableChildren.Add(new KeyValuePair<string, object>("interned_string", _Interned_string));
       BindableChildren.Add(new KeyValuePair<string, object>("polymorphic", _Polymorphic));
       BindableChildren.Add(new KeyValuePair<string, object>("polymorphic_open", _Polymorphic_open));
-      BindableChildren.Add(new KeyValuePair<string, object>("enum", _Enum));
       BindableChildren.Add(new KeyValuePair<string, object>("date", _Date));
       BindableChildren.Add(new KeyValuePair<string, object>("duration", _Duration));
       BindableChildren.Add(new KeyValuePair<string, object>("property_with_default", _Property_with_default));
@@ -225,7 +218,6 @@ namespace JetBrains.Rider.Model
       new RdProperty<string>(ReadStringInternedAtProtocol, WriteStringInternedAtProtocol),
       new RdProperty<Base>(Base.Read, Base.Write),
       new RdProperty<OpenDerived>(ReadOpenDerived, WriteOpenDerived),
-      new RdProperty<MyEnum>(ReadMyEnum, WriteMyEnum),
       new RdProperty<DateTime>(JetBrains.Rd.Impl.Serializers.ReadDateTime, JetBrains.Rd.Impl.Serializers.WriteDateTime),
       new RdProperty<TimeSpan>(JetBrains.Rd.Impl.Serializers.ReadTimeSpan, JetBrains.Rd.Impl.Serializers.WriteTimeSpan),
       new RdProperty<string>(JetBrains.Rd.Impl.Serializers.ReadString, JetBrains.Rd.Impl.Serializers.WriteString, const_for_default),
@@ -242,7 +234,6 @@ namespace JetBrains.Rider.Model
     public static CtxReadDelegate<byte[]> ReadUByteArray = JetBrains.Rd.Impl.Serializers.ReadUByte.Array();
     public static CtxReadDelegate<string> ReadStringInternedAtProtocol = JetBrains.Rd.Impl.Serializers.ReadString.Interned("Protocol");
     public static CtxReadDelegate<OpenDerived> ReadOpenDerived = Polymorphic<OpenDerived>.ReadAbstract(OpenDerived_Unknown.Read);
-    public static CtxReadDelegate<MyEnum> ReadMyEnum = new CtxReadDelegate<MyEnum>(JetBrains.Rd.Impl.Serializers.ReadEnum<MyEnum>);
     public static CtxReadDelegate<List<MyScalar>> ReadMyScalarList = MyScalar.Read.List();
     public static CtxReadDelegate<List<Derived>> ReadDerivedList = Derived.Read.List();
     public static CtxReadDelegate<List<Base>> ReadBaseList = Base.Read.List();
@@ -250,12 +241,11 @@ namespace JetBrains.Rider.Model
     public static  CtxWriteDelegate<byte[]> WriteUByteArray = JetBrains.Rd.Impl.Serializers.WriteUByte.Array();
     public static  CtxWriteDelegate<string> WriteStringInternedAtProtocol = JetBrains.Rd.Impl.Serializers.WriteString.Interned("Protocol");
     public static  CtxWriteDelegate<OpenDerived> WriteOpenDerived = Polymorphic<OpenDerived>.Write;
-    public static  CtxWriteDelegate<MyEnum> WriteMyEnum = new CtxWriteDelegate<MyEnum>(JetBrains.Rd.Impl.Serializers.WriteEnum<MyEnum>);
     public static  CtxWriteDelegate<List<MyScalar>> WriteMyScalarList = MyScalar.Write.List();
     public static  CtxWriteDelegate<List<Derived>> WriteDerivedList = Derived.Write.List();
     public static  CtxWriteDelegate<List<Base>> WriteBaseList = Base.Write.List();
     
-    protected override long SerializationHash => 126375891868995923L;
+    protected override long SerializationHash => 4763670262278714493L;
     
     protected override Action<ISerializers> Register => RegisterDeclaredTypesSerializers;
     public static void RegisterDeclaredTypesSerializers(ISerializers serializers)
@@ -306,7 +296,6 @@ namespace JetBrains.Rider.Model
         printer.Print("interned_string = "); _Interned_string.PrintEx(printer); printer.Println();
         printer.Print("polymorphic = "); _Polymorphic.PrintEx(printer); printer.Println();
         printer.Print("polymorphic_open = "); _Polymorphic_open.PrintEx(printer); printer.Println();
-        printer.Print("enum = "); _Enum.PrintEx(printer); printer.Println();
         printer.Print("date = "); _Date.PrintEx(printer); printer.Println();
         printer.Print("duration = "); _Duration.PrintEx(printer); printer.Println();
         printer.Print("property_with_default = "); _Property_with_default.PrintEx(printer); printer.Println();
@@ -330,7 +319,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:91</p>
+  /// <p>Generated from: Model.kt:53</p>
   /// </summary>
   public abstract class Base{
     //fields
@@ -422,7 +411,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:29</p>
+  /// <p>Generated from: Model.kt:21</p>
   /// </summary>
   public sealed class Class : IPrintable, IEquatable<Class>
   {
@@ -507,7 +496,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:129</p>
+  /// <p>Generated from: Model.kt:91</p>
   /// </summary>
   public sealed class ClassWithExt : RdBindableBase
   {
@@ -567,7 +556,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:133</p>
+  /// <p>Generated from: Model.kt:95</p>
   /// </summary>
   public sealed class ClassWithStructArrayField : RdBindableBase
   {
@@ -631,7 +620,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:122</p>
+  /// <p>Generated from: Model.kt:84</p>
   /// </summary>
   public sealed class ComplicatedPair : IPrintable, IEquatable<ComplicatedPair>
   {
@@ -725,7 +714,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:76</p>
+  /// <p>Generated from: Model.kt:39</p>
   /// </summary>
   public sealed class ConstUtil : IPrintable, IEquatable<ConstUtil>
   {
@@ -760,7 +749,6 @@ namespace JetBrains.Rider.Model
     public const float const_float = 0.0F;
     public const double const_double = 0.0;
     public const string const_string = "const_string_value";
-    public const MyEnum const_enum = MyEnum.@default;
     
     //custom body
     //methods
@@ -803,7 +791,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:100</p>
+  /// <p>Generated from: Model.kt:62</p>
   /// </summary>
   public sealed class Derived : Base
   {
@@ -884,48 +872,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:52</p>
-  /// </summary>
-  [Flags]
-  public enum Flags {
-    anyFlag = 1 << 0,
-    ktFlag = 1 << 1,
-    netFlag = 1 << 2,
-    cppFlag = 1 << 3
-  }
-  
-  
-  /// <summary>
-  /// <p>Generated from: Model.kt:33</p>
-  /// </summary>
-  public enum MyEnum {
-    
-    /// <summary>
-    /// Dummy field with keyword-like name
-    /// </summary>
-    @default,
-    kt,
-    net,
-    cpp
-  }
-  
-  
-  /// <summary>
-  /// <p>Generated from: Model.kt:42</p>
-  /// </summary>
-  public enum MyInitializedEnum {
-    zero,
-    hundred,
-    two,
-    three,
-    ten,
-    five,
-    six
-  }
-  
-  
-  /// <summary>
-  /// <p>Generated from: Model.kt:59</p>
+  /// <p>Generated from: Model.kt:25</p>
   /// </summary>
   public sealed class MyScalar : IPrintable, IEquatable<MyScalar>
   {
@@ -942,9 +889,6 @@ namespace JetBrains.Rider.Model
     public ushort Unsigned_short {get; private set;}
     public uint Unsigned_int {get; private set;}
     public ulong Unsigned_long {get; private set;}
-    public MyEnum Enum {get; private set;}
-    public JetBrains.Rider.Model.Flags Flags {get; private set;}
-    public JetBrains.Rider.Model.MyInitializedEnum MyInitializedEnum {get; private set;}
     
     //private fields
     //primary constructor
@@ -959,10 +903,7 @@ namespace JetBrains.Rider.Model
       byte unsigned_byte,
       ushort unsigned_short,
       uint unsigned_int,
-      ulong unsigned_long,
-      MyEnum @enum,
-      JetBrains.Rider.Model.Flags flags,
-      JetBrains.Rider.Model.MyInitializedEnum myInitializedEnum
+      ulong unsigned_long
     )
     {
       Bool = @bool;
@@ -976,13 +917,10 @@ namespace JetBrains.Rider.Model
       Unsigned_short = unsigned_short;
       Unsigned_int = unsigned_int;
       Unsigned_long = unsigned_long;
-      Enum = @enum;
-      Flags = flags;
-      MyInitializedEnum = myInitializedEnum;
     }
     //secondary constructor
     //deconstruct trait
-    public void Deconstruct(out bool @bool, out byte @byte, out short @short, out int @int, out long @long, out float @float, out double @double, out byte unsigned_byte, out ushort unsigned_short, out uint unsigned_int, out ulong unsigned_long, out MyEnum @enum, out JetBrains.Rider.Model.Flags flags, out JetBrains.Rider.Model.MyInitializedEnum myInitializedEnum)
+    public void Deconstruct(out bool @bool, out byte @byte, out short @short, out int @int, out long @long, out float @float, out double @double, out byte unsigned_byte, out ushort unsigned_short, out uint unsigned_int, out ulong unsigned_long)
     {
       @bool = Bool;
       @byte = Byte;
@@ -995,9 +933,6 @@ namespace JetBrains.Rider.Model
       unsigned_short = Unsigned_short;
       unsigned_int = Unsigned_int;
       unsigned_long = Unsigned_long;
-      @enum = Enum;
-      flags = Flags;
-      myInitializedEnum = MyInitializedEnum;
     }
     //statics
     
@@ -1014,10 +949,7 @@ namespace JetBrains.Rider.Model
       var unsigned_short = reader.ReadUShort();
       var unsigned_int = reader.ReadUInt();
       var unsigned_long = reader.ReadULong();
-      var @enum = (MyEnum)reader.ReadInt();
-      var flags = (JetBrains.Rider.Model.Flags)reader.ReadInt();
-      var myInitializedEnum = (JetBrains.Rider.Model.MyInitializedEnum)reader.ReadInt();
-      var _result = new MyScalar(@bool, @byte, @short, @int, @long, @float, @double, unsigned_byte, unsigned_short, unsigned_int, unsigned_long, @enum, flags, myInitializedEnum);
+      var _result = new MyScalar(@bool, @byte, @short, @int, @long, @float, @double, unsigned_byte, unsigned_short, unsigned_int, unsigned_long);
       return _result;
     };
     
@@ -1034,9 +966,6 @@ namespace JetBrains.Rider.Model
       writer.Write(value.Unsigned_short);
       writer.Write(value.Unsigned_int);
       writer.Write(value.Unsigned_long);
-      writer.Write((int)value.Enum);
-      writer.Write((int)value.Flags);
-      writer.Write((int)value.MyInitializedEnum);
     };
     
     //constants
@@ -1055,7 +984,7 @@ namespace JetBrains.Rider.Model
     {
       if (ReferenceEquals(null, other)) return false;
       if (ReferenceEquals(this, other)) return true;
-      return Bool == other.Bool && Byte == other.Byte && Short == other.Short && Int == other.Int && Long == other.Long && Float == other.Float && Double == other.Double && Unsigned_byte == other.Unsigned_byte && Unsigned_short == other.Unsigned_short && Unsigned_int == other.Unsigned_int && Unsigned_long == other.Unsigned_long && Enum == other.Enum && Flags == other.Flags && MyInitializedEnum == other.MyInitializedEnum;
+      return Bool == other.Bool && Byte == other.Byte && Short == other.Short && Int == other.Int && Long == other.Long && Float == other.Float && Double == other.Double && Unsigned_byte == other.Unsigned_byte && Unsigned_short == other.Unsigned_short && Unsigned_int == other.Unsigned_int && Unsigned_long == other.Unsigned_long;
     }
     //hash code trait
     public override int GetHashCode()
@@ -1073,9 +1002,6 @@ namespace JetBrains.Rider.Model
         hash = hash * 31 + Unsigned_short.GetHashCode();
         hash = hash * 31 + Unsigned_int.GetHashCode();
         hash = hash * 31 + Unsigned_long.GetHashCode();
-        hash = hash * 31 + (int) Enum;
-        hash = hash * 31 + (int) Flags;
-        hash = hash * 31 + (int) MyInitializedEnum;
         return hash;
       }
     }
@@ -1095,9 +1021,6 @@ namespace JetBrains.Rider.Model
         printer.Print("unsigned_short = "); Unsigned_short.PrintEx(printer); printer.Println();
         printer.Print("unsigned_int = "); Unsigned_int.PrintEx(printer); printer.Println();
         printer.Print("unsigned_long = "); Unsigned_long.PrintEx(printer); printer.Println();
-        printer.Print("enum = "); Enum.PrintEx(printer); printer.Println();
-        printer.Print("flags = "); Flags.PrintEx(printer); printer.Println();
-        printer.Print("myInitializedEnum = "); MyInitializedEnum.PrintEx(printer); printer.Println();
       }
       printer.Print(")");
     }
@@ -1112,7 +1035,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:104</p>
+  /// <p>Generated from: Model.kt:66</p>
   /// </summary>
   public class Open : Base
   {
@@ -1193,7 +1116,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:95</p>
+  /// <p>Generated from: Model.kt:57</p>
   /// </summary>
   public class OpenClass : RdBindableBase
   {
@@ -1340,7 +1263,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:108</p>
+  /// <p>Generated from: Model.kt:70</p>
   /// </summary>
   public class OpenDerived : Open
   {
@@ -1510,7 +1433,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:113</p>
+  /// <p>Generated from: Model.kt:75</p>
   /// </summary>
   public class OpenStructInField{
     //fields
@@ -1797,7 +1720,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:112</p>
+  /// <p>Generated from: Model.kt:74</p>
   /// </summary>
   public sealed class StructWithOpenStructField : IPrintable, IEquatable<StructWithOpenStructField>
   {

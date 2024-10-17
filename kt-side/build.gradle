@@ -41,9 +41,9 @@ ext {
     }
 }
 rdgen {
-    def modelDir = new File(rootDir, "src/main/kotlin/")
-    def csOutput = new File(rootDir, "src/generated/net")
-    def ktOutput = new File(rootDir, "src/generated/kt")
+    def modelDir = new File(rootDir, "src/main/kotlin/model")
+    def csOutput = new File(rootDir, "src/main/kotlin/generated/net")
+    def ktOutput = new File(rootDir, "src/main/kotlin/generated/kt")
 
     verbose = true
 //    classpath {
@@ -56,7 +56,7 @@ rdgen {
     generator {
         language = "kotlin"
         transform = "asis"
-        root = "org.example.DemoRoot"
+        root = "org.example.model.DemoRoot"
         namespace = "com.jetbrains.rider.model"
         directory = "$ktOutput"
     }
@@ -64,7 +64,7 @@ rdgen {
     generator {
         language = "csharp"
         transform = "reversed"
-        root = "org.example.DemoRoot"
+        root = "org.example.model.DemoRoot"
         namespace = "JetBrains.Rider.Model"
         directory = "$csOutput"
     }

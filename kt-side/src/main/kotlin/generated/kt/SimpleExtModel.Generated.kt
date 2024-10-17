@@ -16,10 +16,10 @@ import kotlin.jvm.JvmStatic
 
 
 /**
- * #### Generated from [Model.kt:156]
+ * #### Generated from [Model.kt:177]
  */
-class ClassExtModel private constructor(
-    private val _values: RdSignal<Int>
+class SimpleExtModel private constructor(
+    private val _checker: RdSignal<Unit>
 ) : RdExtBase() {
     //companion
     
@@ -32,45 +32,45 @@ class ClassExtModel private constructor(
         
         
         
-        const val serializationHash = 9039760352823104056L
+        const val serializationHash = 5403836805080301444L
         
     }
-    override val serializersOwner: ISerializersOwner get() = ClassExtModel
-    override val serializationHash: Long get() = ClassExtModel.serializationHash
+    override val serializersOwner: ISerializersOwner get() = SimpleExtModel
+    override val serializationHash: Long get() = SimpleExtModel.serializationHash
     
     //fields
-    val values: ISignal<Int> get() = _values
+    val checker: ISignal<Unit> get() = _checker
     //methods
     //initializer
     init {
-        bindableChildren.add("values" to _values)
+        bindableChildren.add("checker" to _checker)
     }
     
     //secondary constructor
     internal constructor(
     ) : this(
-        RdSignal<Int>(FrameworkMarshallers.Int)
+        RdSignal<Unit>(FrameworkMarshallers.Void)
     )
     
     //equals trait
     //hash code trait
     //pretty print
     override fun print(printer: PrettyPrinter)  {
-        printer.println("ClassExtModel (")
+        printer.println("SimpleExtModel (")
         printer.indent {
-            print("values = "); _values.print(printer); println()
+            print("checker = "); _checker.print(printer); println()
         }
         printer.print(")")
     }
     //deepClone
-    override fun deepClone(): ClassExtModel   {
-        return ClassExtModel(
-            _values.deepClonePolymorphic()
+    override fun deepClone(): SimpleExtModel   {
+        return SimpleExtModel(
+            _checker.deepClonePolymorphic()
         )
     }
     //contexts
     //threading
     override val extThreading: ExtThreadingKind get() = ExtThreadingKind.Default
 }
-val ClassWithExt.classExtModel get() = getOrCreateExtension("classExtModel", ::ClassExtModel)
+val SimpleModel.simpleExtModel get() = getOrCreateExtension("simpleExtModel", ::SimpleExtModel)
 

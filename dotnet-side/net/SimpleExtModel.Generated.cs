@@ -36,9 +36,9 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:149</p>
+  /// <p>Generated from: Model.kt:177</p>
   /// </summary>
-  public class ExtModel : RdExtBase
+  public class SimpleExtModel : RdExtBase
   {
     //fields
     //public fields
@@ -48,7 +48,7 @@ namespace JetBrains.Rider.Model
     [NotNull] private readonly RdSignal<Unit> _Checker;
     
     //primary constructor
-    private ExtModel(
+    private SimpleExtModel(
       [NotNull] RdSignal<Unit> checker
     )
     {
@@ -58,7 +58,7 @@ namespace JetBrains.Rider.Model
       BindableChildren.Add(new KeyValuePair<string, object>("checker", _Checker));
     }
     //secondary constructor
-    internal ExtModel (
+    internal SimpleExtModel (
     ) : this (
       new RdSignal<Unit>(JetBrains.Rd.Impl.Serializers.ReadVoid, JetBrains.Rd.Impl.Serializers.WriteVoid)
     ) {}
@@ -67,7 +67,7 @@ namespace JetBrains.Rider.Model
     
     
     
-    protected override long SerializationHash => 2364843396187734L;
+    protected override long SerializationHash => 5403836805080301444L;
     
     protected override Action<ISerializers> Register => RegisterDeclaredTypesSerializers;
     public static void RegisterDeclaredTypesSerializers(ISerializers serializers)
@@ -86,7 +86,7 @@ namespace JetBrains.Rider.Model
     //pretty print
     public override void Print(PrettyPrinter printer)
     {
-      printer.Println("ExtModel (");
+      printer.Println("SimpleExtModel (");
       using (printer.IndentCookie()) {
         printer.Print("checker = "); _Checker.PrintEx(printer); printer.Println();
       }
@@ -100,11 +100,11 @@ namespace JetBrains.Rider.Model
       return printer.ToString();
     }
   }
-  public static class DemoModelExtModelEx
+  public static class SimpleModelSimpleExtModelEx
    {
-    public static ExtModel GetExtModel(this DemoModel demoModel)
+    public static SimpleExtModel GetSimpleExtModel(this SimpleModel simpleModel)
     {
-      return demoModel.GetOrCreateExtension("extModel", () => new ExtModel());
+      return simpleModel.GetOrCreateExtension("simpleExtModel", () => new SimpleExtModel());
     }
   }
 }

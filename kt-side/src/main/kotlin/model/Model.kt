@@ -1,12 +1,10 @@
 @file:Suppress("unused")
 
-package org.example
+package org.example.model
 
 import com.jetbrains.rd.generator.nova.*
-import com.jetbrains.rd.generator.nova.cpp.Cpp17Generator
 import com.jetbrains.rd.generator.nova.csharp.CSharp50Generator
 import com.jetbrains.rd.generator.nova.kotlin.Kotlin11Generator
-import com.jetbrains.rd.generator.paths.cppDirectorySystemPropertyKey
 import com.jetbrains.rd.generator.paths.csDirectorySystemPropertyKey
 import com.jetbrains.rd.generator.paths.ktDirectorySystemPropertyKey
 import com.jetbrains.rd.generator.paths.outputDirectory
@@ -15,45 +13,13 @@ const val folder = "demo"
 
 object DemoRoot : Root(
     Kotlin11Generator(FlowTransform.AsIs, "demo", outputDirectory(ktDirectorySystemPropertyKey, folder)),
-    Cpp17Generator(FlowTransform.Reversed, "demo", outputDirectory(cppDirectorySystemPropertyKey, folder)),
     CSharp50Generator(FlowTransform.Reversed, "demo", outputDirectory(csDirectorySystemPropertyKey, folder))
-) {
-
-    init {
-        setting(Cpp17Generator.TargetName, "demo_model")
-    }
-}
+)
 
 @ExperimentalUnsignedTypes
 object DemoModel : Ext(DemoRoot) {
     private val `class` = structdef("class") {
         field("true", PredefinedType.string)
-    }
-
-    private val MyEnum = enum {
-        (+"default").doc("Dummy field with keyword-like name")
-        +"kt"
-        +"net"
-        +"cpp"
-
-        const("All", PredefinedType.int, 0)
-    }
-
-    private val MyInitializedEnum = enum {
-        (+"zero")
-        (+"hundred").setting(Cpp17Generator.EnumConstantValue, 100)
-        (+"two")
-        (+"three")
-        (+"ten").setting(Cpp17Generator.EnumConstantValue, 10)
-        (+"five")
-        (+"six")
-    }
-
-    private val Flags = flags {
-        +"anyFlag"
-        +"ktFlag"
-        +"netFlag"
-        +"cppFlag"
     }
 
     private var MyScalar = structdef {
@@ -68,9 +34,6 @@ object DemoModel : Ext(DemoRoot) {
         field("unsigned_short", PredefinedType.ushort)
         field("unsigned_int", PredefinedType.uint)
         field("unsigned_long", PredefinedType.ulong)
-        field("enum", MyEnum)
-        field("flags", Flags)
-        field("myInitializedEnum", MyInitializedEnum)
     }
 
     private var ConstUtil = structdef {
@@ -85,7 +48,6 @@ object DemoModel : Ext(DemoRoot) {
         const("const_float", PredefinedType.float, 0f)
         const("const_double", PredefinedType.double, 0.0)
         const("const_string", PredefinedType.string, "const_string_value")
-        const("const_enum", MyEnum, 0)
     }
 
     private var Base = basestruct {
@@ -161,8 +123,6 @@ object DemoModel : Ext(DemoRoot) {
 
         property("polymorphic_open", OpenDerived)
 
-        property("enum", MyEnum)
-
         property("date", PredefinedType.dateTime)
 
         property("duration", PredefinedType.timeSpan)
@@ -196,5 +156,26 @@ object ExtModel : Ext(DemoModel) {
 object ClassExtModel : Ext(DemoModel.classWithExt) {
     init {
         signal("values", PredefinedType.int)
+    }
+}
+
+object SimpleModel: Ext(DemoRoot) {
+    private val ilInstance = openclass {
+        property("name", PredefinedType.string)
+    }
+    private val ilMethod = classdef extends ilInstance {
+    }
+    private val ilType = classdef extends ilInstance {
+    }
+    init {
+        property("types", array(ilType))
+        property("instances", array(ilType))
+    }
+}
+
+@ExperimentalUnsignedTypes
+object SimpleExtModel : Ext(SimpleModel) {
+    init {
+        signal("checker", PredefinedType.void)
     }
 }

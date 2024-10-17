@@ -76,5 +76,8 @@ fun main() {
         signal.fire()
         signal.fire()
         signal.fire()
+        signal.advise(lifetime) {
+            println("hzcallback")
+        }
     }
 }

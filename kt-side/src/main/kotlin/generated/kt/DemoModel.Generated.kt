@@ -16,7 +16,7 @@ import kotlin.jvm.JvmStatic
 
 
 /**
- * #### Generated from [Model.kt:28]
+ * #### Generated from [Model.kt:20]
  */
 class DemoModel private constructor(
     private val _boolean_property: RdOptionalProperty<Boolean>,
@@ -32,7 +32,6 @@ class DemoModel private constructor(
     private val _interned_string: RdOptionalProperty<String>,
     private val _polymorphic: RdOptionalProperty<Base>,
     private val _polymorphic_open: RdOptionalProperty<OpenDerived>,
-    private val _enum: RdOptionalProperty<MyEnum>,
     private val _date: RdOptionalProperty<Date>,
     private val _duration: RdOptionalProperty<Duration>,
     private val _property_with_default: RdProperty<String>,
@@ -49,9 +48,6 @@ class DemoModel private constructor(
         
         override fun registerSerializersCore(serializers: ISerializers)  {
             serializers.register(Class)
-            serializers.register(MyEnum.marshaller)
-            serializers.register(MyInitializedEnum.marshaller)
-            serializers.register(Flags.marshaller)
             serializers.register(MyScalar)
             serializers.register(ConstUtil)
             serializers.register(OpenClass)
@@ -92,7 +88,7 @@ class DemoModel private constructor(
         private val __DerivedListSerializer = Derived.list()
         private val __BaseListSerializer = AbstractPolymorphic(Base).list()
         
-        const val serializationHash = 126375891868995923L
+        const val serializationHash = 4763670262278714493L
         
         const val const_toplevel : Boolean = true
         const val const_for_default : String = "192"
@@ -114,7 +110,6 @@ class DemoModel private constructor(
     val interned_string: IOptProperty<String> get() = _interned_string
     val polymorphic: IOptProperty<Base> get() = _polymorphic
     val polymorphic_open: IOptProperty<OpenDerived> get() = _polymorphic_open
-    val `enum`: IOptProperty<MyEnum> get() = _enum
     val date: IOptProperty<Date> get() = _date
     val duration: IOptProperty<Duration> get() = _duration
     val property_with_default: IProperty<String> get() = _property_with_default
@@ -138,7 +133,6 @@ class DemoModel private constructor(
         _interned_string.optimizeNested = true
         _polymorphic.optimizeNested = true
         _polymorphic_open.optimizeNested = true
-        _enum.optimizeNested = true
         _date.optimizeNested = true
         _duration.optimizeNested = true
         _property_with_default.optimizeNested = true
@@ -163,7 +157,6 @@ class DemoModel private constructor(
         bindableChildren.add("interned_string" to _interned_string)
         bindableChildren.add("polymorphic" to _polymorphic)
         bindableChildren.add("polymorphic_open" to _polymorphic_open)
-        bindableChildren.add("enum" to _enum)
         bindableChildren.add("date" to _date)
         bindableChildren.add("duration" to _duration)
         bindableChildren.add("property_with_default" to _property_with_default)
@@ -191,7 +184,6 @@ class DemoModel private constructor(
         RdOptionalProperty<String>(__StringInternedAtProtocolSerializer),
         RdOptionalProperty<Base>(AbstractPolymorphic(Base)),
         RdOptionalProperty<OpenDerived>(AbstractPolymorphic(OpenDerived)),
-        RdOptionalProperty<MyEnum>(MyEnum.marshaller),
         RdOptionalProperty<Date>(FrameworkMarshallers.DateTime),
         RdOptionalProperty<Duration>(FrameworkMarshallers.TimeSpan),
         RdProperty<String>(const_for_default, FrameworkMarshallers.String),
@@ -222,7 +214,6 @@ class DemoModel private constructor(
             print("interned_string = "); _interned_string.print(printer); println()
             print("polymorphic = "); _polymorphic.print(printer); println()
             print("polymorphic_open = "); _polymorphic_open.print(printer); println()
-            print("enum = "); _enum.print(printer); println()
             print("date = "); _date.print(printer); println()
             print("duration = "); _duration.print(printer); println()
             print("property_with_default = "); _property_with_default.print(printer); println()
@@ -251,7 +242,6 @@ class DemoModel private constructor(
             _interned_string.deepClonePolymorphic(),
             _polymorphic.deepClonePolymorphic(),
             _polymorphic_open.deepClonePolymorphic(),
-            _enum.deepClonePolymorphic(),
             _date.deepClonePolymorphic(),
             _duration.deepClonePolymorphic(),
             _property_with_default.deepClonePolymorphic(),
@@ -272,7 +262,7 @@ val IProtocol.demoModel get() = getOrCreateExtension(DemoModel::class) { @Suppre
 
 
 /**
- * #### Generated from [Model.kt:91]
+ * #### Generated from [Model.kt:53]
  */
 abstract class Base (
 ) : IPrintable {
@@ -356,7 +346,7 @@ class Base_Unknown (
 
 
 /**
- * #### Generated from [Model.kt:29]
+ * #### Generated from [Model.kt:21]
  */
 data class Class (
     val `true`: String
@@ -414,7 +404,7 @@ data class Class (
 
 
 /**
- * #### Generated from [Model.kt:129]
+ * #### Generated from [Model.kt:91]
  */
 class ClassWithExt (
     val key: Int
@@ -464,7 +454,7 @@ class ClassWithExt (
 
 
 /**
- * #### Generated from [Model.kt:133]
+ * #### Generated from [Model.kt:95]
  */
 class ClassWithStructArrayField (
     val arrayField: Array<MyScalar>
@@ -514,7 +504,7 @@ class ClassWithStructArrayField (
 
 
 /**
- * #### Generated from [Model.kt:122]
+ * #### Generated from [Model.kt:84]
  */
 data class ComplicatedPair (
     val first: Derived,
@@ -578,7 +568,7 @@ data class ComplicatedPair (
 
 
 /**
- * #### Generated from [Model.kt:76]
+ * #### Generated from [Model.kt:39]
  */
 class ConstUtil (
 ) : IPrintable {
@@ -607,7 +597,6 @@ class ConstUtil (
         const val const_float : Float = 0.0f
         const val const_double : Double = 0.0
         const val const_string : String = "const_string_value"
-        val const_enum : MyEnum = MyEnum.default
     }
     //fields
     //methods
@@ -640,7 +629,7 @@ class ConstUtil (
 
 
 /**
- * #### Generated from [Model.kt:100]
+ * #### Generated from [Model.kt:62]
  */
 class Derived (
     val string: String
@@ -701,64 +690,7 @@ class Derived (
 
 
 /**
- * #### Generated from [Model.kt:52]
- */
-enum class Flags {
-    anyFlag, 
-    ktFlag, 
-    netFlag, 
-    cppFlag;
-    
-    companion object {
-        val marshaller = FrameworkMarshallers.enumSet<Flags>()
-        
-    }
-}
-
-
-/**
- * @property default Dummy field with keyword-like name
- * #### Generated from [Model.kt:33]
- */
-enum class MyEnum {
-    
-    /**
-     * Dummy field with keyword-like name
-     */
-    default, 
-    kt, 
-    net, 
-    cpp;
-    
-    companion object {
-        val marshaller = FrameworkMarshallers.enum<MyEnum>()
-        
-        const val all : Int = 0
-    }
-}
-
-
-/**
- * #### Generated from [Model.kt:42]
- */
-enum class MyInitializedEnum {
-    zero, 
-    hundred, 
-    two, 
-    three, 
-    ten, 
-    five, 
-    six;
-    
-    companion object {
-        val marshaller = FrameworkMarshallers.enum<MyInitializedEnum>()
-        
-    }
-}
-
-
-/**
- * #### Generated from [Model.kt:59]
+ * #### Generated from [Model.kt:25]
  */
 data class MyScalar (
     val bool: Boolean,
@@ -771,10 +703,7 @@ data class MyScalar (
     val unsigned_byte: UByte,
     val unsigned_short: UShort,
     val unsigned_int: UInt,
-    val unsigned_long: ULong,
-    val `enum`: MyEnum,
-    val flags: EnumSet<Flags>,
-    val myInitializedEnum: MyInitializedEnum
+    val unsigned_long: ULong
 ) : IPrintable {
     //companion
     
@@ -794,10 +723,7 @@ data class MyScalar (
             val unsigned_short = buffer.readUShort()
             val unsigned_int = buffer.readUInt()
             val unsigned_long = buffer.readULong()
-            val `enum` = buffer.readEnum<MyEnum>()
-            val flags = buffer.readEnumSet<Flags>()
-            val myInitializedEnum = buffer.readEnum<MyInitializedEnum>()
-            return MyScalar(bool, byte, short, int, long, float, double, unsigned_byte, unsigned_short, unsigned_int, unsigned_long, `enum`, flags, myInitializedEnum)
+            return MyScalar(bool, byte, short, int, long, float, double, unsigned_byte, unsigned_short, unsigned_int, unsigned_long)
         }
         
         override fun write(ctx: SerializationCtx, buffer: AbstractBuffer, value: MyScalar)  {
@@ -812,9 +738,6 @@ data class MyScalar (
             buffer.writeUShort(value.unsigned_short)
             buffer.writeUInt(value.unsigned_int)
             buffer.writeULong(value.unsigned_long)
-            buffer.writeEnum(value.`enum`)
-            buffer.writeEnumSet(value.flags)
-            buffer.writeEnum(value.myInitializedEnum)
         }
         
         
@@ -841,9 +764,6 @@ data class MyScalar (
         if (unsigned_short != other.unsigned_short) return false
         if (unsigned_int != other.unsigned_int) return false
         if (unsigned_long != other.unsigned_long) return false
-        if (`enum` != other.`enum`) return false
-        if (flags != other.flags) return false
-        if (myInitializedEnum != other.myInitializedEnum) return false
         
         return true
     }
@@ -861,9 +781,6 @@ data class MyScalar (
         __r = __r*31 + unsigned_short.hashCode()
         __r = __r*31 + unsigned_int.hashCode()
         __r = __r*31 + unsigned_long.hashCode()
-        __r = __r*31 + `enum`.hashCode()
-        __r = __r*31 + flags.hashCode()
-        __r = __r*31 + myInitializedEnum.hashCode()
         return __r
     }
     //pretty print
@@ -881,9 +798,6 @@ data class MyScalar (
             print("unsigned_short = "); unsigned_short.print(printer); println()
             print("unsigned_int = "); unsigned_int.print(printer); println()
             print("unsigned_long = "); unsigned_long.print(printer); println()
-            print("enum = "); `enum`.print(printer); println()
-            print("flags = "); flags.print(printer); println()
-            print("myInitializedEnum = "); myInitializedEnum.print(printer); println()
         }
         printer.print(")")
     }
@@ -894,7 +808,7 @@ data class MyScalar (
 
 
 /**
- * #### Generated from [Model.kt:104]
+ * #### Generated from [Model.kt:66]
  */
 open class Open (
     val openString: String
@@ -961,7 +875,7 @@ open class Open (
 
 
 /**
- * #### Generated from [Model.kt:95]
+ * #### Generated from [Model.kt:57]
  */
 open class OpenClass protected constructor(
     protected val _string: RdOptionalProperty<String>,
@@ -1110,7 +1024,7 @@ class OpenClass_Unknown (
 
 
 /**
- * #### Generated from [Model.kt:108]
+ * #### Generated from [Model.kt:70]
  */
 open class OpenDerived (
     val openDerivedString: String,
@@ -1252,7 +1166,7 @@ class OpenDerived_Unknown (
 
 
 /**
- * #### Generated from [Model.kt:113]
+ * #### Generated from [Model.kt:75]
  */
 open class OpenStructInField (
     val underflow0: String,
@@ -1492,7 +1406,7 @@ class Open_Unknown (
 
 
 /**
- * #### Generated from [Model.kt:112]
+ * #### Generated from [Model.kt:74]
  */
 data class StructWithOpenStructField (
     val `inner`: OpenStructInField
