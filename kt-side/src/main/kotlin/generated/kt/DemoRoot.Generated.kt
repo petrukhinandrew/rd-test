@@ -16,7 +16,7 @@ import kotlin.jvm.JvmStatic
 
 
 /**
- * #### Generated from [Model.kt:14]
+ * #### Generated from [Model.kt:15]
  */
 class DemoRoot private constructor(
 ) : RdExtBase() {
@@ -27,13 +27,15 @@ class DemoRoot private constructor(
         override fun registerSerializersCore(serializers: ISerializers)  {
             DemoRoot.register(serializers)
             DemoModel.register(serializers)
+            IlModel.register(serializers)
             LinksModel.register(serializers)
             PrimitiveClassModel.register(serializers)
             PrimitiveModel.register(serializers)
-            SimpleModel.register(serializers)
+//            SimpleModel.register(serializers)
             ClassExtModel.register(serializers)
             ExtModel.register(serializers)
-            SimpleExtModel.register(serializers)
+            IlSigModel.register(serializers)
+//            SimpleExtModel.register(serializers)
         }
         
         

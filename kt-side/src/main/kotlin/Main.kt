@@ -1,14 +1,12 @@
 package org.example
 
 import com.jetbrains.rd.framework.*
+import com.jetbrains.rd.framework.base.deepClonePolymorphic
 import com.jetbrains.rd.util.catch
 import com.jetbrains.rd.util.lifetime.Lifetime
 import com.jetbrains.rd.util.lifetime.isAlive
 import com.jetbrains.rd.util.reactive.IScheduler
-import com.jetbrains.rider.model.ParentInst
-import com.jetbrains.rider.model.linksModel
-import com.jetbrains.rider.model.primitiveClassModel
-import com.jetbrains.rider.model.primitiveModel
+import com.jetbrains.rider.model.*
 import java.util.concurrent.ConcurrentLinkedQueue
 import kotlin.concurrent.thread
 
@@ -58,10 +56,10 @@ fun pumpCurrentThread(lifetime: Lifetime, initializationAction: (IScheduler) -> 
 fun main() {
     val socketLifetimeDef = Lifetime.Eternal.createNested()
     val lifetime = socketLifetimeDef.lifetime
-    thread {
-        Thread.sleep(10000)
-        socketLifetimeDef.terminate()
-    }
+//    thread {
+//        Thread.sleep(10000)
+//        socketLifetimeDef.terminate()
+//    }
     val serializers = Serializers(MarshallersProvider.Dummy)
     pumpCurrentThread(lifetime) { scheduler ->
         val protocol = Protocol(
@@ -91,16 +89,60 @@ fun main() {
 //        model.multipleStruct.advise(lifetime) {
 //            println("multiple struct sig ${it}")
 //        }
-        val model = protocol.linksModel
-        var parents = listOf<ParentInst>()
-        model.parentInsts.advise(lifetime) {
-            println(it)
-            parents = it
-            println("${it[0].childB == it[1].childB} ${it[0].childB === it[1].childB}")
+
+//        val model = protocol.linksModel
+//        var parents = listOf<ParentInst>()
+//        model.parentInsts.advise(lifetime) {
+//            println(it)
+//            parents = it
+//            println("${it[0].childB == it[1].childB} ${it[0].childB === it[1].childB}")
+//        }
+//        model.instStorage.advise(lifetime) {
+//            println(it)
+//            println(parents == it[0].parentInsts)
+//        }
+
+        val ilModel = protocol.ilModel;
+        val sigModel = ilModel.ilSigModel;
+        sigModel.asmResponse.advise(lifetime) { response ->
+            asms[response.id] = IlAsm(response.path)
+            response.types.forEach { type ->
+                types[type.id] = IlType(type.name)
+                type.fields.forEach { field ->
+                    fields[field.id] = IlField(field.name)
+                }
+            }
+            asms[response.id]!!.types = response.types.map{ t -> types[t.id]!!}
+            response.types.forEach { type ->
+                types[type.id]!!.fields = type.fields.map { f ->
+                    fields[f.id]!!
+                }
+                type.fields.forEach { field ->
+                    fields[field.id]!!.declType = types[field.declTypeId]!!
+                    fields[field.id]!!.fieldType = types[field.fieldTypeId]!!
+                }
+            }
+            println(fields[5]!!.fieldType === fields[8]!!.fieldType)
         }
-        model.instStorage.advise(lifetime) {
-            println(it)
-            println(parents == it[0].parentInsts)
-        }
+
+        sigModel.asmRequest.fire(Request("root asm path"))
     }
+}
+
+interface IlInstance
+val asms = mutableMapOf<Int, IlAsm>()
+val types = mutableMapOf<Int, IlType>()
+val fields = mutableMapOf<Int, IlField>()
+
+class IlAsm(val path: String) : IlInstance {
+    lateinit var types: List<IlType>
+}
+
+class IlType(val name: String) : IlInstance {
+    lateinit var fields: List<IlField>
+}
+
+class IlField(val name: String) : IlInstance {
+    lateinit var declType: IlType
+    lateinit var fieldType: IlType
 }

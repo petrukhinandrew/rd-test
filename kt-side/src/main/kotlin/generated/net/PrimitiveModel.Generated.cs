@@ -36,7 +36,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:57</p>
+  /// <p>Generated from: Model.kt:92</p>
   /// </summary>
   public class PrimitiveModel : RdExtBase
   {

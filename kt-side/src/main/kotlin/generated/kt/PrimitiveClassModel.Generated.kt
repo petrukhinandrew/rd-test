@@ -16,7 +16,7 @@ import kotlin.jvm.JvmStatic
 
 
 /**
- * #### Generated from [Model.kt:41]
+ * #### Generated from [Model.kt:75]
  */
 class PrimitiveClassModel private constructor(
     private val _setStruct: RdSignal<SimpleStruct>,
@@ -100,7 +100,7 @@ val IProtocol.primitiveClassModel get() = getOrCreateExtension(PrimitiveClassMod
 
 
 /**
- * #### Generated from [Model.kt:42]
+ * #### Generated from [Model.kt:76]
  */
 class SimpleClass (
     val strValue: String,
@@ -155,7 +155,7 @@ class SimpleClass (
 
 
 /**
- * #### Generated from [Model.kt:46]
+ * #### Generated from [Model.kt:80]
  */
 data class SimpleStruct (
     val strValue: String,

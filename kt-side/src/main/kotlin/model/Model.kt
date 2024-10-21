@@ -8,6 +8,7 @@ import com.jetbrains.rd.generator.nova.kotlin.Kotlin11Generator
 import com.jetbrains.rd.generator.paths.csDirectorySystemPropertyKey
 import com.jetbrains.rd.generator.paths.ktDirectorySystemPropertyKey
 import com.jetbrains.rd.generator.paths.outputDirectory
+import org.example.model.SimpleModel.ilType
 
 const val folder = "demo"
 
@@ -16,7 +17,39 @@ object DemoRoot : Root(
     CSharp50Generator(FlowTransform.Reversed, "demo", outputDirectory(csDirectorySystemPropertyKey, folder))
 )
 
-object LinksModel: Ext(DemoRoot) {
+
+object IlModel : Ext(DemoRoot) {
+    public val IlAsmDto = structdef {
+        field("id", PredefinedType.int)
+        field("path", PredefinedType.string)
+        field("types", immutableList(IlTypeDto))
+    }
+    private val IlTypeDto = structdef {
+        field("id", PredefinedType.int)
+        field("name", PredefinedType.string)
+        field("fields", immutableList(IlFieldDto))
+    }
+    private val IlFieldDto = structdef {
+        field("id", PredefinedType.int)
+        field("name", PredefinedType.string)
+        field("declTypeId", PredefinedType.int)
+        field("fieldTypeId", PredefinedType.int)
+    }
+}
+
+object IlSigModel: Ext(IlModel) {
+    private val request = structdef {
+        field("rootAsm", PredefinedType.string)
+    }
+
+    init {
+        signal("asmRequest", request).apply { async }
+        signal("asmResponse", IlModel.IlAsmDto).apply { async }
+    }
+}
+
+
+object LinksModel : Ext(DemoRoot) {
     private val parentInst = structdef {
         field("childA", childA)
         field("childB", childB)
@@ -32,13 +65,14 @@ object LinksModel: Ext(DemoRoot) {
         field("childrenA", immutableList(childA))
         field("childrenB", immutableList(childB))
     }
+
     init {
         signal("parentInsts", immutableList(parentInst))
         signal("instStorage", immutableList(instStorage))
     }
 }
 
-object PrimitiveClassModel: Ext(DemoRoot) {
+object PrimitiveClassModel : Ext(DemoRoot) {
     private val simpleClass = classdef {
         field("strValue", PredefinedType.string)
         field("intValue", PredefinedType.int)
@@ -47,6 +81,7 @@ object PrimitiveClassModel: Ext(DemoRoot) {
         field("strValue", PredefinedType.string)
         field("intValue", PredefinedType.int)
     }
+
     init {
 //        signal("setClass", simpleClass)
         signal("setStruct", simpleStruct)
@@ -54,7 +89,7 @@ object PrimitiveClassModel: Ext(DemoRoot) {
     }
 }
 
-object PrimitiveModel: Ext(DemoRoot) {
+object PrimitiveModel : Ext(DemoRoot) {
     init {
         property("strValue", PredefinedType.string)
         property("intValue", PredefinedType.int)
@@ -206,7 +241,7 @@ object ClassExtModel : Ext(DemoModel.classWithExt) {
     }
 }
 
-object SimpleModel: Ext(DemoRoot) {
+object SimpleModel : Ext(DemoRoot) {
     private val ilInstance = openclass {
         property("name", PredefinedType.string)
     }
@@ -215,6 +250,7 @@ object SimpleModel: Ext(DemoRoot) {
     public val ilType = classdef extends ilInstance {
 
     }
+
     init {
         property("types", array(ilType))
         property("instances", array(ilInstance))

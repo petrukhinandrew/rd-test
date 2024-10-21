@@ -36,7 +36,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:196</p>
+  /// <p>Generated from: Model.kt:231</p>
   /// </summary>
   public class ExtModel : RdExtBase
   {

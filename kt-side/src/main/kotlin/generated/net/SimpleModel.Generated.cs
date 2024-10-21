@@ -36,7 +36,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:209</p>
+  /// <p>Generated from: Model.kt:244</p>
   /// </summary>
   public class SimpleModel : RdExtBase
   {
@@ -124,7 +124,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:210</p>
+  /// <p>Generated from: Model.kt:245</p>
   /// </summary>
   public class IlInstance : RdBindableBase
   {
@@ -255,7 +255,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:213</p>
+  /// <p>Generated from: Model.kt:248</p>
   /// </summary>
   public sealed class IlMethod : IlInstance
   {
@@ -319,7 +319,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:215</p>
+  /// <p>Generated from: Model.kt:250</p>
   /// </summary>
   public sealed class IlType : IlInstance
   {

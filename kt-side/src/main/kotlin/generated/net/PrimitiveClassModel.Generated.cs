@@ -36,7 +36,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:41</p>
+  /// <p>Generated from: Model.kt:75</p>
   /// </summary>
   public class PrimitiveClassModel : RdExtBase
   {
@@ -118,7 +118,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:42</p>
+  /// <p>Generated from: Model.kt:76</p>
   /// </summary>
   public sealed class SimpleClass : RdBindableBase
   {
@@ -186,7 +186,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:46</p>
+  /// <p>Generated from: Model.kt:80</p>
   /// </summary>
   public sealed class SimpleStruct : IPrintable, IEquatable<SimpleStruct>
   {

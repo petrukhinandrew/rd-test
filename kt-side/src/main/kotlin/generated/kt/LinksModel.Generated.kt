@@ -16,7 +16,7 @@ import kotlin.jvm.JvmStatic
 
 
 /**
- * #### Generated from [Model.kt:19]
+ * #### Generated from [Model.kt:52]
  */
 class LinksModel private constructor(
     private val _parentInsts: RdSignal<List<ParentInst>>,
@@ -103,7 +103,7 @@ val IProtocol.linksModel get() = getOrCreateExtension(LinksModel::class) { @Supp
 
 
 /**
- * #### Generated from [Model.kt:24]
+ * #### Generated from [Model.kt:57]
  */
 data class ChildA (
     val name: String
@@ -161,7 +161,7 @@ data class ChildA (
 
 
 /**
- * #### Generated from [Model.kt:27]
+ * #### Generated from [Model.kt:60]
  */
 data class ChildB (
     val id: Int
@@ -219,7 +219,7 @@ data class ChildB (
 
 
 /**
- * #### Generated from [Model.kt:30]
+ * #### Generated from [Model.kt:63]
  */
 data class InstStorage (
     val parentInsts: List<ParentInst>,
@@ -289,7 +289,7 @@ data class InstStorage (
 
 
 /**
- * #### Generated from [Model.kt:20]
+ * #### Generated from [Model.kt:53]
  */
 data class ParentInst (
     val childA: ChildA,

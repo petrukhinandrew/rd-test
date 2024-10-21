@@ -36,7 +36,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:67</p>
+  /// <p>Generated from: Model.kt:102</p>
   /// </summary>
   public class DemoModel : RdExtBase
   {
@@ -319,7 +319,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:100</p>
+  /// <p>Generated from: Model.kt:135</p>
   /// </summary>
   public abstract class Base{
     //fields
@@ -411,7 +411,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:68</p>
+  /// <p>Generated from: Model.kt:103</p>
   /// </summary>
   public sealed class Class : IPrintable, IEquatable<Class>
   {
@@ -496,7 +496,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:138</p>
+  /// <p>Generated from: Model.kt:173</p>
   /// </summary>
   public sealed class ClassWithExt : RdBindableBase
   {
@@ -556,7 +556,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:142</p>
+  /// <p>Generated from: Model.kt:177</p>
   /// </summary>
   public sealed class ClassWithStructArrayField : RdBindableBase
   {
@@ -620,7 +620,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:131</p>
+  /// <p>Generated from: Model.kt:166</p>
   /// </summary>
   public sealed class ComplicatedPair : IPrintable, IEquatable<ComplicatedPair>
   {
@@ -714,7 +714,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:86</p>
+  /// <p>Generated from: Model.kt:121</p>
   /// </summary>
   public sealed class ConstUtil : IPrintable, IEquatable<ConstUtil>
   {
@@ -791,7 +791,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:109</p>
+  /// <p>Generated from: Model.kt:144</p>
   /// </summary>
   public sealed class Derived : Base
   {
@@ -872,7 +872,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:72</p>
+  /// <p>Generated from: Model.kt:107</p>
   /// </summary>
   public sealed class MyScalar : IPrintable, IEquatable<MyScalar>
   {
@@ -1035,7 +1035,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:113</p>
+  /// <p>Generated from: Model.kt:148</p>
   /// </summary>
   public class Open : Base
   {
@@ -1116,7 +1116,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:104</p>
+  /// <p>Generated from: Model.kt:139</p>
   /// </summary>
   public class OpenClass : RdBindableBase
   {
@@ -1263,7 +1263,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:117</p>
+  /// <p>Generated from: Model.kt:152</p>
   /// </summary>
   public class OpenDerived : Open
   {
@@ -1433,7 +1433,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:122</p>
+  /// <p>Generated from: Model.kt:157</p>
   /// </summary>
   public class OpenStructInField{
     //fields
@@ -1720,7 +1720,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:121</p>
+  /// <p>Generated from: Model.kt:156</p>
   /// </summary>
   public sealed class StructWithOpenStructField : IPrintable, IEquatable<StructWithOpenStructField>
   {

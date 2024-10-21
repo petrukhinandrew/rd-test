@@ -16,7 +16,7 @@ import kotlin.jvm.JvmStatic
 
 
 /**
- * #### Generated from [Model.kt:203]
+ * #### Generated from [Model.kt:238]
  */
 class ClassExtModel private constructor(
     private val _values: RdSignal<Int>

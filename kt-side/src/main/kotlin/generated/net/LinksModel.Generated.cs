@@ -36,7 +36,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:19</p>
+  /// <p>Generated from: Model.kt:52</p>
   /// </summary>
   public class LinksModel : RdExtBase
   {
@@ -120,7 +120,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:24</p>
+  /// <p>Generated from: Model.kt:57</p>
   /// </summary>
   public sealed class ChildA : IPrintable, IEquatable<ChildA>
   {
@@ -205,7 +205,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:27</p>
+  /// <p>Generated from: Model.kt:60</p>
   /// </summary>
   public sealed class ChildB : IPrintable, IEquatable<ChildB>
   {
@@ -288,7 +288,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:30</p>
+  /// <p>Generated from: Model.kt:63</p>
   /// </summary>
   public sealed class InstStorage : IPrintable, IEquatable<InstStorage>
   {
@@ -397,7 +397,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:20</p>
+  /// <p>Generated from: Model.kt:53</p>
   /// </summary>
   public sealed class ParentInst : IPrintable, IEquatable<ParentInst>
   {
