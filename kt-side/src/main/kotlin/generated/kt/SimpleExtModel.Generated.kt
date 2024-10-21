@@ -16,7 +16,7 @@ import kotlin.jvm.JvmStatic
 
 
 /**
- * #### Generated from [Model.kt:177]
+ * #### Generated from [Model.kt:225]
  */
 class SimpleExtModel private constructor(
     private val _checker: RdSignal<Unit>

@@ -9,6 +9,7 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using JetBrains.Annotations;
 
@@ -33,8 +34,8 @@ using JetBrains.Rd.Text;
 
 namespace JetBrains.Rider.Model
 {
-  
-  
+
+
   /// <summary>
   /// <p>Generated from: Model.kt:162</p>
   /// </summary>
@@ -44,11 +45,11 @@ namespace JetBrains.Rider.Model
     //public fields
     [NotNull] public IViewableProperty<IlType[]> Types => _Types;
     [NotNull] public IViewableProperty<IlType[]> Instances => _Instances;
-    
+
     //private fields
     [NotNull] private readonly RdProperty<IlType[]> _Types;
     [NotNull] private readonly RdProperty<IlType[]> _Instances;
-    
+
     //primary constructor
     private SimpleModel(
       [NotNull] RdProperty<IlType[]> types,
@@ -57,7 +58,7 @@ namespace JetBrains.Rider.Model
     {
       if (types == null) throw new ArgumentNullException("types");
       if (instances == null) throw new ArgumentNullException("instances");
-      
+
       _Types = types;
       _Instances = instances;
       BindableChildren.Add(new KeyValuePair<string, object>("types", _Types));
@@ -71,13 +72,13 @@ namespace JetBrains.Rider.Model
     ) {}
     //deconstruct trait
     //statics
-    
+
     public static CtxReadDelegate<IlType[]> ReadIlTypeArray = IlType.Read.Array();
-    
+
     public static  CtxWriteDelegate<IlType[]> WriteIlTypeArray = IlType.Write.Array();
-    
+
     protected override long SerializationHash => -8325234396836602965L;
-    
+
     protected override Action<ISerializers> Register => RegisterDeclaredTypesSerializers;
     public static void RegisterDeclaredTypesSerializers(ISerializers serializers)
     {
@@ -85,18 +86,18 @@ namespace JetBrains.Rider.Model
       serializers.Register(IlMethod.Read, IlMethod.Write);
       serializers.Register(IlType.Read, IlType.Write);
       serializers.Register(IlInstance_Unknown.Read, IlInstance_Unknown.Write);
-      
+
       serializers.RegisterToplevelOnce(typeof(DemoRoot), DemoRoot.RegisterDeclaredTypesSerializers);
     }
-    
+
     public SimpleModel(Lifetime lifetime, IProtocol protocol) : this()
     {
       Identify(protocol.Identities, RdId.Root.Mix("SimpleModel"));
       this.BindTopLevel(lifetime, protocol, "SimpleModel");
     }
-    
+
     //constants
-    
+
     //custom body
     //methods
     //equals trait
@@ -119,8 +120,8 @@ namespace JetBrains.Rider.Model
       return printer.ToString();
     }
   }
-  
-  
+
+
   /// <summary>
   /// <p>Generated from: Model.kt:163</p>
   /// </summary>
@@ -129,17 +130,17 @@ namespace JetBrains.Rider.Model
     //fields
     //public fields
     [NotNull] public IViewableProperty<string> Name => _Name;
-    
+
     //private fields
     [NotNull] protected readonly RdProperty<string> _Name;
-    
+
     //primary constructor
     protected IlInstance(
       [NotNull] RdProperty<string> name
     )
     {
       if (name == null) throw new ArgumentNullException("name");
-      
+
       _Name = name;
       _Name.OptimizeNested = true;
       BindableChildren.Add(new KeyValuePair<string, object>("name", _Name));
@@ -151,23 +152,23 @@ namespace JetBrains.Rider.Model
     ) {}
     //deconstruct trait
     //statics
-    
-    public static CtxReadDelegate<IlInstance> Read = (ctx, reader) => 
+
+    public static CtxReadDelegate<IlInstance> Read = (ctx, reader) =>
     {
       var _id = RdId.Read(reader);
       var name = RdProperty<string>.Read(ctx, reader, JetBrains.Rd.Impl.Serializers.ReadString, JetBrains.Rd.Impl.Serializers.WriteString);
       var _result = new IlInstance(name).WithId(_id);
       return _result;
     };
-    
-    public static CtxWriteDelegate<IlInstance> Write = (ctx, writer, value) => 
+
+    public static CtxWriteDelegate<IlInstance> Write = (ctx, writer, value) =>
     {
       value.RdId.Write(writer);
       RdProperty<string>.Write(ctx, writer, value._Name);
     };
-    
+
     //constants
-    
+
     //custom body
     //methods
     //equals trait
@@ -189,20 +190,20 @@ namespace JetBrains.Rider.Model
       return printer.ToString();
     }
   }
-  
-  
+
+
   public sealed class IlInstance_Unknown : IlInstance
   {
     //fields
     //public fields
-    
+
     //private fields
     //primary constructor
     private IlInstance_Unknown(
       [NotNull] RdProperty<string> name
     ) : base (
       name
-     ) 
+     )
     {
     }
     //secondary constructor
@@ -212,23 +213,23 @@ namespace JetBrains.Rider.Model
     ) {}
     //deconstruct trait
     //statics
-    
-    public static new CtxReadDelegate<IlInstance_Unknown> Read = (ctx, reader) => 
+
+    public static new CtxReadDelegate<IlInstance_Unknown> Read = (ctx, reader) =>
     {
       var _id = RdId.Read(reader);
       var name = RdProperty<string>.Read(ctx, reader, JetBrains.Rd.Impl.Serializers.ReadString, JetBrains.Rd.Impl.Serializers.WriteString);
       var _result = new IlInstance_Unknown(name).WithId(_id);
       return _result;
     };
-    
-    public static new CtxWriteDelegate<IlInstance_Unknown> Write = (ctx, writer, value) => 
+
+    public static new CtxWriteDelegate<IlInstance_Unknown> Write = (ctx, writer, value) =>
     {
       value.RdId.Write(writer);
       RdProperty<string>.Write(ctx, writer, value._Name);
     };
-    
+
     //constants
-    
+
     //custom body
     //methods
     //equals trait
@@ -250,8 +251,8 @@ namespace JetBrains.Rider.Model
       return printer.ToString();
     }
   }
-  
-  
+
+
   /// <summary>
   /// <p>Generated from: Model.kt:166</p>
   /// </summary>
@@ -259,14 +260,14 @@ namespace JetBrains.Rider.Model
   {
     //fields
     //public fields
-    
+
     //private fields
     //primary constructor
     private IlMethod(
       [NotNull] RdProperty<string> name
     ) : base (
       name
-     ) 
+     )
     {
     }
     //secondary constructor
@@ -276,23 +277,23 @@ namespace JetBrains.Rider.Model
     ) {}
     //deconstruct trait
     //statics
-    
-    public static new CtxReadDelegate<IlMethod> Read = (ctx, reader) => 
+
+    public static new CtxReadDelegate<IlMethod> Read = (ctx, reader) =>
     {
       var _id = RdId.Read(reader);
       var name = RdProperty<string>.Read(ctx, reader, JetBrains.Rd.Impl.Serializers.ReadString, JetBrains.Rd.Impl.Serializers.WriteString);
       var _result = new IlMethod(name).WithId(_id);
       return _result;
     };
-    
-    public static new CtxWriteDelegate<IlMethod> Write = (ctx, writer, value) => 
+
+    public static new CtxWriteDelegate<IlMethod> Write = (ctx, writer, value) =>
     {
       value.RdId.Write(writer);
       RdProperty<string>.Write(ctx, writer, value._Name);
     };
-    
+
     //constants
-    
+
     //custom body
     //methods
     //equals trait
@@ -314,8 +315,8 @@ namespace JetBrains.Rider.Model
       return printer.ToString();
     }
   }
-  
-  
+
+
   /// <summary>
   /// <p>Generated from: Model.kt:168</p>
   /// </summary>
@@ -323,14 +324,14 @@ namespace JetBrains.Rider.Model
   {
     //fields
     //public fields
-    
+
     //private fields
     //primary constructor
     private IlType(
       [NotNull] RdProperty<string> name
     ) : base (
       name
-     ) 
+     )
     {
     }
     //secondary constructor
@@ -340,23 +341,23 @@ namespace JetBrains.Rider.Model
     ) {}
     //deconstruct trait
     //statics
-    
-    public static new CtxReadDelegate<IlType> Read = (ctx, reader) => 
+
+    public static new CtxReadDelegate<IlType> Read = (ctx, reader) =>
     {
       var _id = RdId.Read(reader);
       var name = RdProperty<string>.Read(ctx, reader, JetBrains.Rd.Impl.Serializers.ReadString, JetBrains.Rd.Impl.Serializers.WriteString);
       var _result = new IlType(name).WithId(_id);
       return _result;
     };
-    
-    public static new CtxWriteDelegate<IlType> Write = (ctx, writer, value) => 
+
+    public static new CtxWriteDelegate<IlType> Write = (ctx, writer, value) =>
     {
       value.RdId.Write(writer);
       RdProperty<string>.Write(ctx, writer, value._Name);
     };
-    
+
     //constants
-    
+
     //custom body
     //methods
     //equals trait

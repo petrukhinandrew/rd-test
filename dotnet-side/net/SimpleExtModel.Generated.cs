@@ -9,6 +9,7 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using JetBrains.Annotations;
 
@@ -33,8 +34,8 @@ using JetBrains.Rd.Text;
 
 namespace JetBrains.Rider.Model
 {
-  
-  
+
+
   /// <summary>
   /// <p>Generated from: Model.kt:177</p>
   /// </summary>
@@ -43,17 +44,17 @@ namespace JetBrains.Rider.Model
     //fields
     //public fields
     [NotNull] public ISignal<Unit> Checker => _Checker;
-    
+
     //private fields
     [NotNull] private readonly RdSignal<Unit> _Checker;
-    
+
     //primary constructor
     private SimpleExtModel(
       [NotNull] RdSignal<Unit> checker
     )
     {
       if (checker == null) throw new ArgumentNullException("checker");
-      
+
       _Checker = checker;
       BindableChildren.Add(new KeyValuePair<string, object>("checker", _Checker));
     }
@@ -64,21 +65,21 @@ namespace JetBrains.Rider.Model
     ) {}
     //deconstruct trait
     //statics
-    
-    
-    
+
+
+
     protected override long SerializationHash => 5403836805080301444L;
-    
+
     protected override Action<ISerializers> Register => RegisterDeclaredTypesSerializers;
     public static void RegisterDeclaredTypesSerializers(ISerializers serializers)
     {
-      
+
       serializers.RegisterToplevelOnce(typeof(DemoRoot), DemoRoot.RegisterDeclaredTypesSerializers);
     }
-    
-    
+
+
     //constants
-    
+
     //custom body
     //methods
     //equals trait

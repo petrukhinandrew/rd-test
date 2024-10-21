@@ -36,7 +36,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:177</p>
+  /// <p>Generated from: Model.kt:225</p>
   /// </summary>
   public class SimpleExtModel : RdExtBase
   {

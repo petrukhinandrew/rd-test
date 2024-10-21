@@ -16,7 +16,7 @@ import kotlin.jvm.JvmStatic
 
 
 /**
- * #### Generated from [Model.kt:20]
+ * #### Generated from [Model.kt:67]
  */
 class DemoModel private constructor(
     private val _boolean_property: RdOptionalProperty<Boolean>,
@@ -262,7 +262,7 @@ val IProtocol.demoModel get() = getOrCreateExtension(DemoModel::class) { @Suppre
 
 
 /**
- * #### Generated from [Model.kt:53]
+ * #### Generated from [Model.kt:100]
  */
 abstract class Base (
 ) : IPrintable {
@@ -346,7 +346,7 @@ class Base_Unknown (
 
 
 /**
- * #### Generated from [Model.kt:21]
+ * #### Generated from [Model.kt:68]
  */
 data class Class (
     val `true`: String
@@ -404,7 +404,7 @@ data class Class (
 
 
 /**
- * #### Generated from [Model.kt:91]
+ * #### Generated from [Model.kt:138]
  */
 class ClassWithExt (
     val key: Int
@@ -454,7 +454,7 @@ class ClassWithExt (
 
 
 /**
- * #### Generated from [Model.kt:95]
+ * #### Generated from [Model.kt:142]
  */
 class ClassWithStructArrayField (
     val arrayField: Array<MyScalar>
@@ -504,7 +504,7 @@ class ClassWithStructArrayField (
 
 
 /**
- * #### Generated from [Model.kt:84]
+ * #### Generated from [Model.kt:131]
  */
 data class ComplicatedPair (
     val first: Derived,
@@ -568,7 +568,7 @@ data class ComplicatedPair (
 
 
 /**
- * #### Generated from [Model.kt:39]
+ * #### Generated from [Model.kt:86]
  */
 class ConstUtil (
 ) : IPrintable {
@@ -629,7 +629,7 @@ class ConstUtil (
 
 
 /**
- * #### Generated from [Model.kt:62]
+ * #### Generated from [Model.kt:109]
  */
 class Derived (
     val string: String
@@ -690,7 +690,7 @@ class Derived (
 
 
 /**
- * #### Generated from [Model.kt:25]
+ * #### Generated from [Model.kt:72]
  */
 data class MyScalar (
     val bool: Boolean,
@@ -808,7 +808,7 @@ data class MyScalar (
 
 
 /**
- * #### Generated from [Model.kt:66]
+ * #### Generated from [Model.kt:113]
  */
 open class Open (
     val openString: String
@@ -875,7 +875,7 @@ open class Open (
 
 
 /**
- * #### Generated from [Model.kt:57]
+ * #### Generated from [Model.kt:104]
  */
 open class OpenClass protected constructor(
     protected val _string: RdOptionalProperty<String>,
@@ -1024,7 +1024,7 @@ class OpenClass_Unknown (
 
 
 /**
- * #### Generated from [Model.kt:70]
+ * #### Generated from [Model.kt:117]
  */
 open class OpenDerived (
     val openDerivedString: String,
@@ -1166,7 +1166,7 @@ class OpenDerived_Unknown (
 
 
 /**
- * #### Generated from [Model.kt:75]
+ * #### Generated from [Model.kt:122]
  */
 open class OpenStructInField (
     val underflow0: String,
@@ -1406,7 +1406,7 @@ class Open_Unknown (
 
 
 /**
- * #### Generated from [Model.kt:74]
+ * #### Generated from [Model.kt:121]
  */
 data class StructWithOpenStructField (
     val `inner`: OpenStructInField

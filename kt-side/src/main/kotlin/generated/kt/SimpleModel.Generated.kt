@@ -16,11 +16,11 @@ import kotlin.jvm.JvmStatic
 
 
 /**
- * #### Generated from [Model.kt:162]
+ * #### Generated from [Model.kt:209]
  */
 class SimpleModel private constructor(
     private val _types: RdOptionalProperty<Array<IlType>>,
-    private val _instances: RdOptionalProperty<Array<IlType>>
+    private val _instances: RdOptionalProperty<Array<IlInstance>>
 ) : RdExtBase() {
     //companion
     
@@ -51,8 +51,9 @@ class SimpleModel private constructor(
         }
         
         private val __IlTypeArraySerializer = IlType.array()
+        private val __IlInstanceArraySerializer = AbstractPolymorphic(IlInstance).array()
         
-        const val serializationHash = -8325234396836602965L
+        const val serializationHash = -5080969073389914549L
         
     }
     override val serializersOwner: ISerializersOwner get() = SimpleModel
@@ -60,7 +61,7 @@ class SimpleModel private constructor(
     
     //fields
     val types: IOptProperty<Array<IlType>> get() = _types
-    val instances: IOptProperty<Array<IlType>> get() = _instances
+    val instances: IOptProperty<Array<IlInstance>> get() = _instances
     //methods
     //initializer
     init {
@@ -72,7 +73,7 @@ class SimpleModel private constructor(
     private constructor(
     ) : this(
         RdOptionalProperty<Array<IlType>>(__IlTypeArraySerializer),
-        RdOptionalProperty<Array<IlType>>(__IlTypeArraySerializer)
+        RdOptionalProperty<Array<IlInstance>>(__IlInstanceArraySerializer)
     )
     
     //equals trait
@@ -102,7 +103,7 @@ val IProtocol.simpleModel get() = getOrCreateExtension(SimpleModel::class) { @Su
 
 
 /**
- * #### Generated from [Model.kt:163]
+ * #### Generated from [Model.kt:210]
  */
 open class IlInstance protected constructor(
     protected val _name: RdOptionalProperty<String>
@@ -236,7 +237,7 @@ class IlInstance_Unknown (
 
 
 /**
- * #### Generated from [Model.kt:166]
+ * #### Generated from [Model.kt:213]
  */
 class IlMethod private constructor(
     _name: RdOptionalProperty<String>
@@ -293,7 +294,7 @@ class IlMethod private constructor(
 
 
 /**
- * #### Generated from [Model.kt:168]
+ * #### Generated from [Model.kt:215]
  */
 class IlType private constructor(
     _name: RdOptionalProperty<String>

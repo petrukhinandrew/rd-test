@@ -36,23 +36,23 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:162</p>
+  /// <p>Generated from: Model.kt:209</p>
   /// </summary>
   public class SimpleModel : RdExtBase
   {
     //fields
     //public fields
     [NotNull] public IViewableProperty<IlType[]> Types => _Types;
-    [NotNull] public IViewableProperty<IlType[]> Instances => _Instances;
+    [NotNull] public IViewableProperty<IlInstance[]> Instances => _Instances;
     
     //private fields
     [NotNull] private readonly RdProperty<IlType[]> _Types;
-    [NotNull] private readonly RdProperty<IlType[]> _Instances;
+    [NotNull] private readonly RdProperty<IlInstance[]> _Instances;
     
     //primary constructor
     private SimpleModel(
       [NotNull] RdProperty<IlType[]> types,
-      [NotNull] RdProperty<IlType[]> instances
+      [NotNull] RdProperty<IlInstance[]> instances
     )
     {
       if (types == null) throw new ArgumentNullException("types");
@@ -67,16 +67,18 @@ namespace JetBrains.Rider.Model
     private SimpleModel (
     ) : this (
       new RdProperty<IlType[]>(ReadIlTypeArray, WriteIlTypeArray),
-      new RdProperty<IlType[]>(ReadIlTypeArray, WriteIlTypeArray)
+      new RdProperty<IlInstance[]>(ReadIlInstanceArray, WriteIlInstanceArray)
     ) {}
     //deconstruct trait
     //statics
     
     public static CtxReadDelegate<IlType[]> ReadIlTypeArray = IlType.Read.Array();
+    public static CtxReadDelegate<IlInstance[]> ReadIlInstanceArray = Polymorphic<IlInstance>.ReadAbstract(IlInstance_Unknown.Read).Array();
     
     public static  CtxWriteDelegate<IlType[]> WriteIlTypeArray = IlType.Write.Array();
+    public static  CtxWriteDelegate<IlInstance[]> WriteIlInstanceArray = Polymorphic<IlInstance>.Write.Array();
     
-    protected override long SerializationHash => -8325234396836602965L;
+    protected override long SerializationHash => -5080969073389914549L;
     
     protected override Action<ISerializers> Register => RegisterDeclaredTypesSerializers;
     public static void RegisterDeclaredTypesSerializers(ISerializers serializers)
@@ -122,7 +124,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:163</p>
+  /// <p>Generated from: Model.kt:210</p>
   /// </summary>
   public class IlInstance : RdBindableBase
   {
@@ -253,7 +255,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:166</p>
+  /// <p>Generated from: Model.kt:213</p>
   /// </summary>
   public sealed class IlMethod : IlInstance
   {
@@ -317,7 +319,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:168</p>
+  /// <p>Generated from: Model.kt:215</p>
   /// </summary>
   public sealed class IlType : IlInstance
   {

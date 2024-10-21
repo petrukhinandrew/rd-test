@@ -5,10 +5,10 @@ import com.jetbrains.rd.util.catch
 import com.jetbrains.rd.util.lifetime.Lifetime
 import com.jetbrains.rd.util.lifetime.isAlive
 import com.jetbrains.rd.util.reactive.IScheduler
-import com.jetbrains.rd.util.reactive.fire
-import com.jetbrains.rd.util.threading.SingleThreadScheduler
-import com.jetbrains.rider.model.demoModel
-import com.jetbrains.rider.model.extModel
+import com.jetbrains.rider.model.ParentInst
+import com.jetbrains.rider.model.linksModel
+import com.jetbrains.rider.model.primitiveClassModel
+import com.jetbrains.rider.model.primitiveModel
 import java.util.concurrent.ConcurrentLinkedQueue
 import kotlin.concurrent.thread
 
@@ -62,22 +62,45 @@ fun main() {
         Thread.sleep(10000)
         socketLifetimeDef.terminate()
     }
+    val serializers = Serializers(MarshallersProvider.Dummy)
     pumpCurrentThread(lifetime) { scheduler ->
         val protocol = Protocol(
             "Server",
-            Serializers(),
+            serializers,
             Identities(IdKind.Server),
             scheduler,
             SocketWire.Server(lifetime, scheduler, 8083, "Server"),
             lifetime
         )
-        val server = Server(scheduler, protocol)
-        val signal = server.protocol.demoModel.extModel.checker
-        signal.fire()
-        signal.fire()
-        signal.fire()
-        signal.advise(lifetime) {
-            println("hzcallback")
+
+//        val model = protocol.primitiveModel
+//        val intSet = model.setIntValue
+//        intSet.advise(lifetime) {
+//            println("got set int $it")
+//        }
+//        val strSet = model.setStrValue
+//        strSet.advise(lifetime) {
+//            println("got set str $it")
+//        }
+
+//        val model = protocol.primitiveClassModel
+//        val structSig = model.setStruct;
+//        structSig.advise(lifetime) {
+//            println("struct sig ${it}")
+//        }
+//        model.multipleStruct.advise(lifetime) {
+//            println("multiple struct sig ${it}")
+//        }
+        val model = protocol.linksModel
+        var parents = listOf<ParentInst>()
+        model.parentInsts.advise(lifetime) {
+            println(it)
+            parents = it
+            println("${it[0].childB == it[1].childB} ${it[0].childB === it[1].childB}")
+        }
+        model.instStorage.advise(lifetime) {
+            println(it)
+            println(parents == it[0].parentInsts)
         }
     }
 }

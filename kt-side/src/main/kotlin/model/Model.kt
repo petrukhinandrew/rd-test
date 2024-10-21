@@ -16,6 +16,53 @@ object DemoRoot : Root(
     CSharp50Generator(FlowTransform.Reversed, "demo", outputDirectory(csDirectorySystemPropertyKey, folder))
 )
 
+object LinksModel: Ext(DemoRoot) {
+    private val parentInst = structdef {
+        field("childA", childA)
+        field("childB", childB)
+    }
+    private val childA = structdef {
+        field("name", PredefinedType.string)
+    }
+    private val childB = structdef {
+        field("id", PredefinedType.int)
+    }
+    private val instStorage = structdef {
+        field("parentInsts", immutableList(parentInst))
+        field("childrenA", immutableList(childA))
+        field("childrenB", immutableList(childB))
+    }
+    init {
+        signal("parentInsts", immutableList(parentInst))
+        signal("instStorage", immutableList(instStorage))
+    }
+}
+
+object PrimitiveClassModel: Ext(DemoRoot) {
+    private val simpleClass = classdef {
+        field("strValue", PredefinedType.string)
+        field("intValue", PredefinedType.int)
+    }
+    private val simpleStruct = structdef {
+        field("strValue", PredefinedType.string)
+        field("intValue", PredefinedType.int)
+    }
+    init {
+//        signal("setClass", simpleClass)
+        signal("setStruct", simpleStruct)
+        signal("multipleStruct", immutableList(simpleStruct))
+    }
+}
+
+object PrimitiveModel: Ext(DemoRoot) {
+    init {
+        property("strValue", PredefinedType.string)
+        property("intValue", PredefinedType.int)
+        signal("setIntValue", PredefinedType.int)
+        signal("setStrValue", PredefinedType.string)
+    }
+}
+
 @ExperimentalUnsignedTypes
 object DemoModel : Ext(DemoRoot) {
     private val `class` = structdef("class") {
@@ -163,13 +210,14 @@ object SimpleModel: Ext(DemoRoot) {
     private val ilInstance = openclass {
         property("name", PredefinedType.string)
     }
-    private val ilMethod = classdef extends ilInstance {
+    public val ilMethod = classdef extends ilInstance {
     }
-    private val ilType = classdef extends ilInstance {
+    public val ilType = classdef extends ilInstance {
+
     }
     init {
         property("types", array(ilType))
-        property("instances", array(ilType))
+        property("instances", array(ilInstance))
     }
 }
 

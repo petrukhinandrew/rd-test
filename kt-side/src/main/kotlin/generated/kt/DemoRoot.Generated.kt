@@ -27,6 +27,9 @@ class DemoRoot private constructor(
         override fun registerSerializersCore(serializers: ISerializers)  {
             DemoRoot.register(serializers)
             DemoModel.register(serializers)
+            LinksModel.register(serializers)
+            PrimitiveClassModel.register(serializers)
+            PrimitiveModel.register(serializers)
             SimpleModel.register(serializers)
             ClassExtModel.register(serializers)
             ExtModel.register(serializers)

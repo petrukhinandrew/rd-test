@@ -63,6 +63,9 @@ namespace JetBrains.Rider.Model
       
       serializers.RegisterToplevelOnce(typeof(DemoRoot), DemoRoot.RegisterDeclaredTypesSerializers);
       serializers.RegisterToplevelOnce(typeof(DemoModel), DemoModel.RegisterDeclaredTypesSerializers);
+      serializers.RegisterToplevelOnce(typeof(LinksModel), LinksModel.RegisterDeclaredTypesSerializers);
+      serializers.RegisterToplevelOnce(typeof(PrimitiveClassModel), PrimitiveClassModel.RegisterDeclaredTypesSerializers);
+      serializers.RegisterToplevelOnce(typeof(PrimitiveModel), PrimitiveModel.RegisterDeclaredTypesSerializers);
       serializers.RegisterToplevelOnce(typeof(SimpleModel), SimpleModel.RegisterDeclaredTypesSerializers);
       serializers.RegisterToplevelOnce(typeof(ClassExtModel), ClassExtModel.RegisterDeclaredTypesSerializers);
       serializers.RegisterToplevelOnce(typeof(ExtModel), ExtModel.RegisterDeclaredTypesSerializers);
