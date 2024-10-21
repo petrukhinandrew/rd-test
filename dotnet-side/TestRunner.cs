@@ -55,7 +55,7 @@ public static class Program
             {
                 Console.WriteLine($"required asm is at {req.RootAsm}");
                 Console.WriteLine("Immitating work");
-                Thread.Sleep(500);
+                Thread.Sleep(2000);
                 Console.WriteLine("Firing asm");
                 asmResp.Fire(new IlAsmDto(1, req.RootAsm, [
                     new IlTypeDto(2, "2", [new IlFieldDto(5, "5", 2, 2), new IlFieldDto(6, "6", 2, 3)]),

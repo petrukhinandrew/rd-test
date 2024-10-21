@@ -105,6 +105,7 @@ fun main() {
         val ilModel = protocol.ilModel;
         val sigModel = ilModel.ilSigModel;
         sigModel.asmResponse.advise(lifetime) { response ->
+            println("got response for ${response.path}")
             asms[response.id] = IlAsm(response.path)
             response.types.forEach { type ->
                 types[type.id] = IlType(type.name)
@@ -112,6 +113,7 @@ fun main() {
                     fields[field.id] = IlField(field.name)
                 }
             }
+            println("insts alloc done")
             asms[response.id]!!.types = response.types.map{ t -> types[t.id]!!}
             response.types.forEach { type ->
                 types[type.id]!!.fields = type.fields.map { f ->
@@ -122,10 +124,16 @@ fun main() {
                     fields[field.id]!!.fieldType = types[field.fieldTypeId]!!
                 }
             }
+            println("inst mapping done")
             println(fields[5]!!.fieldType === fields[8]!!.fieldType)
-        }
+            println(fields[5]!!.fieldType == fields[8]!!.fieldType)
+            println(fields[5]!!.declType === fields[5]!!.fieldType)
+            println(fields[5]!!.declType == fields[5]!!.fieldType)
 
+        }
+        println("requesting root asm path")
         sigModel.asmRequest.fire(Request("root asm path"))
+        println("request fired")
     }
 }
 
