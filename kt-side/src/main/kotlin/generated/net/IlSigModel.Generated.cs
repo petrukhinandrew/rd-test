@@ -36,23 +36,23 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:40</p>
+  /// <p>Generated from: Model.kt:71</p>
   /// </summary>
   public class IlSigModel : RdExtBase
   {
     //fields
     //public fields
     [NotNull] public ISignal<Request> AsmRequest => _AsmRequest;
-    [NotNull] public ISignal<IlAsmDto> AsmResponse => _AsmResponse;
+    [NotNull] public ISignal<List<IlDto>> AsmResponse => _AsmResponse;
     
     //private fields
     [NotNull] private readonly RdSignal<Request> _AsmRequest;
-    [NotNull] private readonly RdSignal<IlAsmDto> _AsmResponse;
+    [NotNull] private readonly RdSignal<List<IlDto>> _AsmResponse;
     
     //primary constructor
     private IlSigModel(
       [NotNull] RdSignal<Request> asmRequest,
-      [NotNull] RdSignal<IlAsmDto> asmResponse
+      [NotNull] RdSignal<List<IlDto>> asmResponse
     )
     {
       if (asmRequest == null) throw new ArgumentNullException("asmRequest");
@@ -69,20 +69,22 @@ namespace JetBrains.Rider.Model
     internal IlSigModel (
     ) : this (
       new RdSignal<Request>(Request.Read, Request.Write),
-      new RdSignal<IlAsmDto>(IlAsmDto.Read, IlAsmDto.Write)
+      new RdSignal<List<IlDto>>(ReadIlDtoList, WriteIlDtoList)
     ) {}
     //deconstruct trait
     //statics
     
+    public static CtxReadDelegate<List<IlDto>> ReadIlDtoList = IlDto.Read.List();
     
+    public static  CtxWriteDelegate<List<IlDto>> WriteIlDtoList = IlDto.Write.List();
     
-    protected override long SerializationHash => -231705078597361284L;
+    protected override long SerializationHash => 4472687692352809953L;
     
     protected override Action<ISerializers> Register => RegisterDeclaredTypesSerializers;
     public static void RegisterDeclaredTypesSerializers(ISerializers serializers)
     {
       
-      serializers.RegisterToplevelOnce(typeof(DemoRoot), DemoRoot.RegisterDeclaredTypesSerializers);
+      serializers.RegisterToplevelOnce(typeof(IlRoot), IlRoot.RegisterDeclaredTypesSerializers);
     }
     
     
@@ -120,7 +122,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:41</p>
+  /// <p>Generated from: Model.kt:72</p>
   /// </summary>
   public sealed class Request : IPrintable, IEquatable<Request>
   {

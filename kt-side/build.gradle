@@ -56,7 +56,7 @@ rdgen {
     generator {
         language = "kotlin"
         transform = "asis"
-        root = "org.example.model.DemoRoot"
+        root = "org.example.model.IlRoot"
         namespace = "com.jetbrains.rider.model"
         directory = "$ktOutput"
     }
@@ -64,7 +64,7 @@ rdgen {
     generator {
         language = "csharp"
         transform = "reversed"
-        root = "org.example.model.DemoRoot"
+        root = "org.example.model.IlRoot"
         namespace = "JetBrains.Rider.Model"
         directory = "$csOutput"
     }

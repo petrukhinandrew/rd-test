@@ -16,11 +16,11 @@ import kotlin.jvm.JvmStatic
 
 
 /**
- * #### Generated from [Model.kt:40]
+ * #### Generated from [Model.kt:71]
  */
 class IlSigModel private constructor(
     private val _asmRequest: RdSignal<Request>,
-    private val _asmResponse: RdSignal<IlAsmDto>
+    private val _asmResponse: RdSignal<List<IlDto>>
 ) : RdExtBase() {
     //companion
     
@@ -33,8 +33,9 @@ class IlSigModel private constructor(
         
         
         
+        private val __IlDtoListSerializer = AbstractPolymorphic(IlDto).list()
         
-        const val serializationHash = -231705078597361284L
+        const val serializationHash = 4472687692352809953L
         
     }
     override val serializersOwner: ISerializersOwner get() = IlSigModel
@@ -42,7 +43,7 @@ class IlSigModel private constructor(
     
     //fields
     val asmRequest: IAsyncSignal<Request> get() = _asmRequest
-    val asmResponse: IAsyncSignal<IlAsmDto> get() = _asmResponse
+    val asmResponse: IAsyncSignal<List<IlDto>> get() = _asmResponse
     //methods
     //initializer
     init {
@@ -59,7 +60,7 @@ class IlSigModel private constructor(
     internal constructor(
     ) : this(
         RdSignal<Request>(Request),
-        RdSignal<IlAsmDto>(IlAsmDto)
+        RdSignal<List<IlDto>>(__IlDtoListSerializer)
     )
     
     //equals trait
@@ -89,7 +90,7 @@ val IlModel.ilSigModel get() = getOrCreateExtension("ilSigModel", ::IlSigModel)
 
 
 /**
- * #### Generated from [Model.kt:41]
+ * #### Generated from [Model.kt:72]
  */
 data class Request (
     val rootAsm: String

@@ -36,7 +36,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:21</p>
+  /// <p>Generated from: Model.kt:20</p>
   /// </summary>
   public class IlModel : RdExtBase
   {
@@ -55,13 +55,19 @@ namespace JetBrains.Rider.Model
     
     
     
-    protected override long SerializationHash => 6447058661582492715L;
+    protected override long SerializationHash => 3940035886610741730L;
     
     protected override Action<ISerializers> Register => RegisterDeclaredTypesSerializers;
     public static void RegisterDeclaredTypesSerializers(ISerializers serializers)
     {
+      serializers.Register(IlAsmDto.Read, IlAsmDto.Write);
+      serializers.Register(IlTypeDto.Read, IlTypeDto.Write);
+      serializers.Register(IlFieldDto.Read, IlFieldDto.Write);
+      serializers.Register(IlParameterDto.Read, IlParameterDto.Write);
+      serializers.Register(IlMethodDto.Read, IlMethodDto.Write);
+      serializers.Register(IlDto_Unknown.Read, IlDto_Unknown.Write);
       
-      serializers.RegisterToplevelOnce(typeof(DemoRoot), DemoRoot.RegisterDeclaredTypesSerializers);
+      serializers.RegisterToplevelOnce(typeof(IlRoot), IlRoot.RegisterDeclaredTypesSerializers);
     }
     
     public IlModel(Lifetime lifetime, IProtocol protocol) : this()
@@ -93,58 +99,227 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:22</p>
+  /// <p>Generated from: Model.kt:28</p>
   /// </summary>
-  public sealed class IlAsmDto : IPrintable, IEquatable<IlAsmDto>
+  public sealed class AsmCacheKey : IPrintable, IEquatable<AsmCacheKey>
   {
     //fields
     //public fields
-    public int Id {get; private set;}
-    [NotNull] public string Path {get; private set;}
-    [NotNull] public List<IlTypeDto> Types {get; private set;}
+    public int Asm {get; private set;}
+    
+    //private fields
+    //primary constructor
+    public AsmCacheKey(
+      int asm
+    )
+    {
+      Asm = asm;
+    }
+    //secondary constructor
+    //deconstruct trait
+    public void Deconstruct(out int asm)
+    {
+      asm = Asm;
+    }
+    //statics
+    
+    public static CtxReadDelegate<AsmCacheKey> Read = (ctx, reader) => 
+    {
+      var asm = reader.ReadInt();
+      var _result = new AsmCacheKey(asm);
+      return _result;
+    };
+    
+    public static CtxWriteDelegate<AsmCacheKey> Write = (ctx, writer, value) => 
+    {
+      writer.Write(value.Asm);
+    };
+    
+    //constants
+    
+    //custom body
+    //methods
+    //equals trait
+    public override bool Equals(object obj)
+    {
+      if (ReferenceEquals(null, obj)) return false;
+      if (ReferenceEquals(this, obj)) return true;
+      if (obj.GetType() != GetType()) return false;
+      return Equals((AsmCacheKey) obj);
+    }
+    public bool Equals(AsmCacheKey other)
+    {
+      if (ReferenceEquals(null, other)) return false;
+      if (ReferenceEquals(this, other)) return true;
+      return Asm == other.Asm;
+    }
+    //hash code trait
+    public override int GetHashCode()
+    {
+      unchecked {
+        var hash = 0;
+        hash = hash * 31 + Asm.GetHashCode();
+        return hash;
+      }
+    }
+    //pretty print
+    public void Print(PrettyPrinter printer)
+    {
+      printer.Println("AsmCacheKey (");
+      using (printer.IndentCookie()) {
+        printer.Print("asm = "); Asm.PrintEx(printer); printer.Println();
+      }
+      printer.Print(")");
+    }
+    //toString
+    public override string ToString()
+    {
+      var printer = new SingleLinePrettyPrinter();
+      Print(printer);
+      return printer.ToString();
+    }
+  }
+  
+  
+  /// <summary>
+  /// <p>Generated from: Model.kt:22</p>
+  /// </summary>
+  public sealed class CacheKey : IPrintable, IEquatable<CacheKey>
+  {
+    //fields
+    //public fields
+    public int Asm {get; private set;}
+    public int Mod {get; private set;}
+    public int Inst {get; private set;}
+    
+    //private fields
+    //primary constructor
+    public CacheKey(
+      int asm,
+      int mod,
+      int inst
+    )
+    {
+      Asm = asm;
+      Mod = mod;
+      Inst = inst;
+    }
+    //secondary constructor
+    //deconstruct trait
+    public void Deconstruct(out int asm, out int mod, out int inst)
+    {
+      asm = Asm;
+      mod = Mod;
+      inst = Inst;
+    }
+    //statics
+    
+    public static CtxReadDelegate<CacheKey> Read = (ctx, reader) => 
+    {
+      var asm = reader.ReadInt();
+      var mod = reader.ReadInt();
+      var inst = reader.ReadInt();
+      var _result = new CacheKey(asm, mod, inst);
+      return _result;
+    };
+    
+    public static CtxWriteDelegate<CacheKey> Write = (ctx, writer, value) => 
+    {
+      writer.Write(value.Asm);
+      writer.Write(value.Mod);
+      writer.Write(value.Inst);
+    };
+    
+    //constants
+    
+    //custom body
+    //methods
+    //equals trait
+    public override bool Equals(object obj)
+    {
+      if (ReferenceEquals(null, obj)) return false;
+      if (ReferenceEquals(this, obj)) return true;
+      if (obj.GetType() != GetType()) return false;
+      return Equals((CacheKey) obj);
+    }
+    public bool Equals(CacheKey other)
+    {
+      if (ReferenceEquals(null, other)) return false;
+      if (ReferenceEquals(this, other)) return true;
+      return Asm == other.Asm && Mod == other.Mod && Inst == other.Inst;
+    }
+    //hash code trait
+    public override int GetHashCode()
+    {
+      unchecked {
+        var hash = 0;
+        hash = hash * 31 + Asm.GetHashCode();
+        hash = hash * 31 + Mod.GetHashCode();
+        hash = hash * 31 + Inst.GetHashCode();
+        return hash;
+      }
+    }
+    //pretty print
+    public void Print(PrettyPrinter printer)
+    {
+      printer.Println("CacheKey (");
+      using (printer.IndentCookie()) {
+        printer.Print("asm = "); Asm.PrintEx(printer); printer.Println();
+        printer.Print("mod = "); Mod.PrintEx(printer); printer.Println();
+        printer.Print("inst = "); Inst.PrintEx(printer); printer.Println();
+      }
+      printer.Print(")");
+    }
+    //toString
+    public override string ToString()
+    {
+      var printer = new SingleLinePrettyPrinter();
+      Print(printer);
+      return printer.ToString();
+    }
+  }
+  
+  
+  /// <summary>
+  /// <p>Generated from: Model.kt:33</p>
+  /// </summary>
+  public sealed class IlAsmDto : IlDto
+  {
+    //fields
+    //public fields
+    [NotNull] public AsmCacheKey Id {get; private set;}
+    [NotNull] public string Location {get; private set;}
     
     //private fields
     //primary constructor
     public IlAsmDto(
-      int id,
-      [NotNull] string path,
-      [NotNull] List<IlTypeDto> types
+      [NotNull] AsmCacheKey id,
+      [NotNull] string location
     )
     {
-      if (path == null) throw new ArgumentNullException("path");
-      if (types == null) throw new ArgumentNullException("types");
+      if (id == null) throw new ArgumentNullException("id");
+      if (location == null) throw new ArgumentNullException("location");
       
       Id = id;
-      Path = path;
-      Types = types;
+      Location = location;
     }
     //secondary constructor
     //deconstruct trait
-    public void Deconstruct(out int id, [NotNull] out string path, [NotNull] out List<IlTypeDto> types)
-    {
-      id = Id;
-      path = Path;
-      types = Types;
-    }
     //statics
     
-    public static CtxReadDelegate<IlAsmDto> Read = (ctx, reader) => 
+    public static new CtxReadDelegate<IlAsmDto> Read = (ctx, reader) => 
     {
-      var id = reader.ReadInt();
-      var path = reader.ReadString();
-      var types = ReadIlTypeDtoList(ctx, reader);
-      var _result = new IlAsmDto(id, path, types);
+      var id = AsmCacheKey.Read(ctx, reader);
+      var location = reader.ReadString();
+      var _result = new IlAsmDto(id, location);
       return _result;
     };
-    public static CtxReadDelegate<List<IlTypeDto>> ReadIlTypeDtoList = IlTypeDto.Read.List();
     
-    public static CtxWriteDelegate<IlAsmDto> Write = (ctx, writer, value) => 
+    public static new CtxWriteDelegate<IlAsmDto> Write = (ctx, writer, value) => 
     {
-      writer.Write(value.Id);
-      writer.Write(value.Path);
-      WriteIlTypeDtoList(ctx, writer, value.Types);
+      AsmCacheKey.Write(ctx, writer, value.Id);
+      writer.Write(value.Location);
     };
-    public static  CtxWriteDelegate<List<IlTypeDto>> WriteIlTypeDtoList = IlTypeDto.Write.List();
     
     //constants
     
@@ -162,7 +337,7 @@ namespace JetBrains.Rider.Model
     {
       if (ReferenceEquals(null, other)) return false;
       if (ReferenceEquals(this, other)) return true;
-      return Id == other.Id && Path == other.Path && Types.SequenceEqual(other.Types);
+      return Equals(Id, other.Id) && Location == other.Location;
     }
     //hash code trait
     public override int GetHashCode()
@@ -170,8 +345,7 @@ namespace JetBrains.Rider.Model
       unchecked {
         var hash = 0;
         hash = hash * 31 + Id.GetHashCode();
-        hash = hash * 31 + Path.GetHashCode();
-        hash = hash * 31 + Types.ContentHashCode();
+        hash = hash * 31 + Location.GetHashCode();
         return hash;
       }
     }
@@ -181,8 +355,7 @@ namespace JetBrains.Rider.Model
       printer.Println("IlAsmDto (");
       using (printer.IndentCookie()) {
         printer.Print("id = "); Id.PrintEx(printer); printer.Println();
-        printer.Print("path = "); Path.PrintEx(printer); printer.Println();
-        printer.Print("types = "); Types.PrintEx(printer); printer.Println();
+        printer.Print("location = "); Location.PrintEx(printer); printer.Println();
       }
       printer.Print(")");
     }
@@ -199,58 +372,150 @@ namespace JetBrains.Rider.Model
   /// <summary>
   /// <p>Generated from: Model.kt:32</p>
   /// </summary>
-  public sealed class IlFieldDto : IPrintable, IEquatable<IlFieldDto>
+  public abstract class IlDto{
+    //fields
+    //public fields
+    
+    //private fields
+    //primary constructor
+    //secondary constructor
+    //deconstruct trait
+    //statics
+    
+    public static CtxReadDelegate<IlDto> Read = Polymorphic<IlDto>.ReadAbstract(IlDto_Unknown.Read);
+    
+    public static CtxWriteDelegate<IlDto> Write = Polymorphic<IlDto>.Write;
+    
+    //constants
+    
+    //custom body
+    //methods
+    //equals trait
+    //hash code trait
+    //pretty print
+    //toString
+  }
+  
+  
+  public sealed class IlDto_Unknown : IlDto
   {
     //fields
     //public fields
-    public int Id {get; private set;}
+    
+    //private fields
+    //primary constructor
+    //secondary constructor
+    //deconstruct trait
+    //statics
+    
+    public static new CtxReadDelegate<IlDto_Unknown> Read = (ctx, reader) => 
+    {
+      var _result = new IlDto_Unknown();
+      return _result;
+    };
+    
+    public static new CtxWriteDelegate<IlDto_Unknown> Write = (ctx, writer, value) => 
+    {
+    };
+    
+    //constants
+    
+    //custom body
+    //methods
+    //equals trait
+    public override bool Equals(object obj)
+    {
+      if (ReferenceEquals(null, obj)) return false;
+      if (ReferenceEquals(this, obj)) return true;
+      if (obj.GetType() != GetType()) return false;
+      return Equals((IlDto_Unknown) obj);
+    }
+    public bool Equals(IlDto_Unknown other)
+    {
+      if (ReferenceEquals(null, other)) return false;
+      if (ReferenceEquals(this, other)) return true;
+      return true;
+    }
+    //hash code trait
+    public override int GetHashCode()
+    {
+      unchecked {
+        var hash = 0;
+        return hash;
+      }
+    }
+    //pretty print
+    public void Print(PrettyPrinter printer)
+    {
+      printer.Println("IlDto_Unknown (");
+      printer.Print(")");
+    }
+    //toString
+    public override string ToString()
+    {
+      var printer = new SingleLinePrettyPrinter();
+      Print(printer);
+      return printer.ToString();
+    }
+  }
+  
+  
+  /// <summary>
+  /// <p>Generated from: Model.kt:47</p>
+  /// </summary>
+  public sealed class IlFieldDto : IlDto
+  {
+    //fields
+    //public fields
+    [NotNull] public CacheKey Id {get; private set;}
+    [NotNull] public CacheKey DeclType {get; private set;}
+    [NotNull] public CacheKey FieldType {get; private set;}
+    public bool IsStatic {get; private set;}
     [NotNull] public string Name {get; private set;}
-    public int DeclTypeId {get; private set;}
-    public int FieldTypeId {get; private set;}
     
     //private fields
     //primary constructor
     public IlFieldDto(
-      int id,
-      [NotNull] string name,
-      int declTypeId,
-      int fieldTypeId
+      [NotNull] CacheKey id,
+      [NotNull] CacheKey declType,
+      [NotNull] CacheKey fieldType,
+      bool isStatic,
+      [NotNull] string name
     )
     {
+      if (id == null) throw new ArgumentNullException("id");
+      if (declType == null) throw new ArgumentNullException("declType");
+      if (fieldType == null) throw new ArgumentNullException("fieldType");
       if (name == null) throw new ArgumentNullException("name");
       
       Id = id;
+      DeclType = declType;
+      FieldType = fieldType;
+      IsStatic = isStatic;
       Name = name;
-      DeclTypeId = declTypeId;
-      FieldTypeId = fieldTypeId;
     }
     //secondary constructor
     //deconstruct trait
-    public void Deconstruct(out int id, [NotNull] out string name, out int declTypeId, out int fieldTypeId)
-    {
-      id = Id;
-      name = Name;
-      declTypeId = DeclTypeId;
-      fieldTypeId = FieldTypeId;
-    }
     //statics
     
-    public static CtxReadDelegate<IlFieldDto> Read = (ctx, reader) => 
+    public static new CtxReadDelegate<IlFieldDto> Read = (ctx, reader) => 
     {
-      var id = reader.ReadInt();
+      var id = CacheKey.Read(ctx, reader);
+      var declType = CacheKey.Read(ctx, reader);
+      var fieldType = CacheKey.Read(ctx, reader);
+      var isStatic = reader.ReadBool();
       var name = reader.ReadString();
-      var declTypeId = reader.ReadInt();
-      var fieldTypeId = reader.ReadInt();
-      var _result = new IlFieldDto(id, name, declTypeId, fieldTypeId);
+      var _result = new IlFieldDto(id, declType, fieldType, isStatic, name);
       return _result;
     };
     
-    public static CtxWriteDelegate<IlFieldDto> Write = (ctx, writer, value) => 
+    public static new CtxWriteDelegate<IlFieldDto> Write = (ctx, writer, value) => 
     {
-      writer.Write(value.Id);
+      CacheKey.Write(ctx, writer, value.Id);
+      CacheKey.Write(ctx, writer, value.DeclType);
+      CacheKey.Write(ctx, writer, value.FieldType);
+      writer.Write(value.IsStatic);
       writer.Write(value.Name);
-      writer.Write(value.DeclTypeId);
-      writer.Write(value.FieldTypeId);
     };
     
     //constants
@@ -269,7 +534,7 @@ namespace JetBrains.Rider.Model
     {
       if (ReferenceEquals(null, other)) return false;
       if (ReferenceEquals(this, other)) return true;
-      return Id == other.Id && Name == other.Name && DeclTypeId == other.DeclTypeId && FieldTypeId == other.FieldTypeId;
+      return Equals(Id, other.Id) && Equals(DeclType, other.DeclType) && Equals(FieldType, other.FieldType) && IsStatic == other.IsStatic && Name == other.Name;
     }
     //hash code trait
     public override int GetHashCode()
@@ -277,9 +542,10 @@ namespace JetBrains.Rider.Model
       unchecked {
         var hash = 0;
         hash = hash * 31 + Id.GetHashCode();
+        hash = hash * 31 + DeclType.GetHashCode();
+        hash = hash * 31 + FieldType.GetHashCode();
+        hash = hash * 31 + IsStatic.GetHashCode();
         hash = hash * 31 + Name.GetHashCode();
-        hash = hash * 31 + DeclTypeId.GetHashCode();
-        hash = hash * 31 + FieldTypeId.GetHashCode();
         return hash;
       }
     }
@@ -289,9 +555,10 @@ namespace JetBrains.Rider.Model
       printer.Println("IlFieldDto (");
       using (printer.IndentCookie()) {
         printer.Print("id = "); Id.PrintEx(printer); printer.Println();
+        printer.Print("declType = "); DeclType.PrintEx(printer); printer.Println();
+        printer.Print("fieldType = "); FieldType.PrintEx(printer); printer.Println();
+        printer.Print("isStatic = "); IsStatic.PrintEx(printer); printer.Println();
         printer.Print("name = "); Name.PrintEx(printer); printer.Println();
-        printer.Print("declTypeId = "); DeclTypeId.PrintEx(printer); printer.Println();
-        printer.Print("fieldTypeId = "); FieldTypeId.PrintEx(printer); printer.Println();
       }
       printer.Print(")");
     }
@@ -306,58 +573,288 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:27</p>
+  /// <p>Generated from: Model.kt:62</p>
   /// </summary>
-  public sealed class IlTypeDto : IPrintable, IEquatable<IlTypeDto>
+  public sealed class IlMethodDto : IlDto
   {
     //fields
     //public fields
-    public int Id {get; private set;}
+    [NotNull] public CacheKey Id {get; private set;}
+    [NotNull] public CacheKey DeclType {get; private set;}
+    [NotNull] public CacheKey ReturnType {get; private set;}
     [NotNull] public string Name {get; private set;}
-    [NotNull] public List<IlFieldDto> Fields {get; private set;}
+    [NotNull] public List<IlParameterDto> Parameters {get; private set;}
+    
+    //private fields
+    //primary constructor
+    public IlMethodDto(
+      [NotNull] CacheKey id,
+      [NotNull] CacheKey declType,
+      [NotNull] CacheKey returnType,
+      [NotNull] string name,
+      [NotNull] List<IlParameterDto> parameters
+    )
+    {
+      if (id == null) throw new ArgumentNullException("id");
+      if (declType == null) throw new ArgumentNullException("declType");
+      if (returnType == null) throw new ArgumentNullException("returnType");
+      if (name == null) throw new ArgumentNullException("name");
+      if (parameters == null) throw new ArgumentNullException("parameters");
+      
+      Id = id;
+      DeclType = declType;
+      ReturnType = returnType;
+      Name = name;
+      Parameters = parameters;
+    }
+    //secondary constructor
+    //deconstruct trait
+    //statics
+    
+    public static new CtxReadDelegate<IlMethodDto> Read = (ctx, reader) => 
+    {
+      var id = CacheKey.Read(ctx, reader);
+      var declType = CacheKey.Read(ctx, reader);
+      var returnType = CacheKey.Read(ctx, reader);
+      var name = reader.ReadString();
+      var parameters = ReadIlParameterDtoList(ctx, reader);
+      var _result = new IlMethodDto(id, declType, returnType, name, parameters);
+      return _result;
+    };
+    public static CtxReadDelegate<List<IlParameterDto>> ReadIlParameterDtoList = IlParameterDto.Read.List();
+    
+    public static new CtxWriteDelegate<IlMethodDto> Write = (ctx, writer, value) => 
+    {
+      CacheKey.Write(ctx, writer, value.Id);
+      CacheKey.Write(ctx, writer, value.DeclType);
+      CacheKey.Write(ctx, writer, value.ReturnType);
+      writer.Write(value.Name);
+      WriteIlParameterDtoList(ctx, writer, value.Parameters);
+    };
+    public static  CtxWriteDelegate<List<IlParameterDto>> WriteIlParameterDtoList = IlParameterDto.Write.List();
+    
+    //constants
+    
+    //custom body
+    //methods
+    //equals trait
+    public override bool Equals(object obj)
+    {
+      if (ReferenceEquals(null, obj)) return false;
+      if (ReferenceEquals(this, obj)) return true;
+      if (obj.GetType() != GetType()) return false;
+      return Equals((IlMethodDto) obj);
+    }
+    public bool Equals(IlMethodDto other)
+    {
+      if (ReferenceEquals(null, other)) return false;
+      if (ReferenceEquals(this, other)) return true;
+      return Equals(Id, other.Id) && Equals(DeclType, other.DeclType) && Equals(ReturnType, other.ReturnType) && Name == other.Name && Parameters.SequenceEqual(other.Parameters);
+    }
+    //hash code trait
+    public override int GetHashCode()
+    {
+      unchecked {
+        var hash = 0;
+        hash = hash * 31 + Id.GetHashCode();
+        hash = hash * 31 + DeclType.GetHashCode();
+        hash = hash * 31 + ReturnType.GetHashCode();
+        hash = hash * 31 + Name.GetHashCode();
+        hash = hash * 31 + Parameters.ContentHashCode();
+        return hash;
+      }
+    }
+    //pretty print
+    public void Print(PrettyPrinter printer)
+    {
+      printer.Println("IlMethodDto (");
+      using (printer.IndentCookie()) {
+        printer.Print("id = "); Id.PrintEx(printer); printer.Println();
+        printer.Print("declType = "); DeclType.PrintEx(printer); printer.Println();
+        printer.Print("returnType = "); ReturnType.PrintEx(printer); printer.Println();
+        printer.Print("name = "); Name.PrintEx(printer); printer.Println();
+        printer.Print("parameters = "); Parameters.PrintEx(printer); printer.Println();
+      }
+      printer.Print(")");
+    }
+    //toString
+    public override string ToString()
+    {
+      var printer = new SingleLinePrettyPrinter();
+      Print(printer);
+      return printer.ToString();
+    }
+  }
+  
+  
+  /// <summary>
+  /// <p>Generated from: Model.kt:55</p>
+  /// </summary>
+  public sealed class IlParameterDto : IlDto
+  {
+    //fields
+    //public fields
+    public int Index {get; private set;}
+    [NotNull] public CacheKey Type {get; private set;}
+    [NotNull] public string Name {get; private set;}
+    [CanBeNull] public string DefaultValue {get; private set;}
+    
+    //private fields
+    //primary constructor
+    public IlParameterDto(
+      int index,
+      [NotNull] CacheKey type,
+      [NotNull] string name,
+      [CanBeNull] string defaultValue
+    )
+    {
+      if (type == null) throw new ArgumentNullException("type");
+      if (name == null) throw new ArgumentNullException("name");
+      
+      Index = index;
+      Type = type;
+      Name = name;
+      DefaultValue = defaultValue;
+    }
+    //secondary constructor
+    //deconstruct trait
+    //statics
+    
+    public static new CtxReadDelegate<IlParameterDto> Read = (ctx, reader) => 
+    {
+      var index = reader.ReadInt();
+      var type = CacheKey.Read(ctx, reader);
+      var name = reader.ReadString();
+      var defaultValue = ReadStringNullable(ctx, reader);
+      var _result = new IlParameterDto(index, type, name, defaultValue);
+      return _result;
+    };
+    public static CtxReadDelegate<string> ReadStringNullable = JetBrains.Rd.Impl.Serializers.ReadString.NullableClass();
+    
+    public static new CtxWriteDelegate<IlParameterDto> Write = (ctx, writer, value) => 
+    {
+      writer.Write(value.Index);
+      CacheKey.Write(ctx, writer, value.Type);
+      writer.Write(value.Name);
+      WriteStringNullable(ctx, writer, value.DefaultValue);
+    };
+    public static  CtxWriteDelegate<string> WriteStringNullable = JetBrains.Rd.Impl.Serializers.WriteString.NullableClass();
+    
+    //constants
+    
+    //custom body
+    //methods
+    //equals trait
+    public override bool Equals(object obj)
+    {
+      if (ReferenceEquals(null, obj)) return false;
+      if (ReferenceEquals(this, obj)) return true;
+      if (obj.GetType() != GetType()) return false;
+      return Equals((IlParameterDto) obj);
+    }
+    public bool Equals(IlParameterDto other)
+    {
+      if (ReferenceEquals(null, other)) return false;
+      if (ReferenceEquals(this, other)) return true;
+      return Index == other.Index && Equals(Type, other.Type) && Name == other.Name && Equals(DefaultValue, other.DefaultValue);
+    }
+    //hash code trait
+    public override int GetHashCode()
+    {
+      unchecked {
+        var hash = 0;
+        hash = hash * 31 + Index.GetHashCode();
+        hash = hash * 31 + Type.GetHashCode();
+        hash = hash * 31 + Name.GetHashCode();
+        hash = hash * 31 + (DefaultValue != null ? DefaultValue.GetHashCode() : 0);
+        return hash;
+      }
+    }
+    //pretty print
+    public void Print(PrettyPrinter printer)
+    {
+      printer.Println("IlParameterDto (");
+      using (printer.IndentCookie()) {
+        printer.Print("index = "); Index.PrintEx(printer); printer.Println();
+        printer.Print("type = "); Type.PrintEx(printer); printer.Println();
+        printer.Print("name = "); Name.PrintEx(printer); printer.Println();
+        printer.Print("defaultValue = "); DefaultValue.PrintEx(printer); printer.Println();
+      }
+      printer.Print(")");
+    }
+    //toString
+    public override string ToString()
+    {
+      var printer = new SingleLinePrettyPrinter();
+      Print(printer);
+      return printer.ToString();
+    }
+  }
+  
+  
+  /// <summary>
+  /// <p>Generated from: Model.kt:38</p>
+  /// </summary>
+  public sealed class IlTypeDto : IlDto
+  {
+    //fields
+    //public fields
+    [NotNull] public CacheKey Id {get; private set;}
+    [NotNull] public string Name {get; private set;}
+    [NotNull] public List<CacheKey> GenericArgs {get; private set;}
+    public bool IsGenericParam {get; private set;}
+    public bool IsValueType {get; private set;}
+    public bool IsManaged {get; private set;}
     
     //private fields
     //primary constructor
     public IlTypeDto(
-      int id,
+      [NotNull] CacheKey id,
       [NotNull] string name,
-      [NotNull] List<IlFieldDto> fields
+      [NotNull] List<CacheKey> genericArgs,
+      bool isGenericParam,
+      bool isValueType,
+      bool isManaged
     )
     {
+      if (id == null) throw new ArgumentNullException("id");
       if (name == null) throw new ArgumentNullException("name");
-      if (fields == null) throw new ArgumentNullException("fields");
+      if (genericArgs == null) throw new ArgumentNullException("genericArgs");
       
       Id = id;
       Name = name;
-      Fields = fields;
+      GenericArgs = genericArgs;
+      IsGenericParam = isGenericParam;
+      IsValueType = isValueType;
+      IsManaged = isManaged;
     }
     //secondary constructor
     //deconstruct trait
-    public void Deconstruct(out int id, [NotNull] out string name, [NotNull] out List<IlFieldDto> fields)
-    {
-      id = Id;
-      name = Name;
-      fields = Fields;
-    }
     //statics
     
-    public static CtxReadDelegate<IlTypeDto> Read = (ctx, reader) => 
+    public static new CtxReadDelegate<IlTypeDto> Read = (ctx, reader) => 
     {
-      var id = reader.ReadInt();
+      var id = CacheKey.Read(ctx, reader);
       var name = reader.ReadString();
-      var fields = ReadIlFieldDtoList(ctx, reader);
-      var _result = new IlTypeDto(id, name, fields);
+      var genericArgs = ReadCacheKeyList(ctx, reader);
+      var isGenericParam = reader.ReadBool();
+      var isValueType = reader.ReadBool();
+      var isManaged = reader.ReadBool();
+      var _result = new IlTypeDto(id, name, genericArgs, isGenericParam, isValueType, isManaged);
       return _result;
     };
-    public static CtxReadDelegate<List<IlFieldDto>> ReadIlFieldDtoList = IlFieldDto.Read.List();
+    public static CtxReadDelegate<List<CacheKey>> ReadCacheKeyList = CacheKey.Read.List();
     
-    public static CtxWriteDelegate<IlTypeDto> Write = (ctx, writer, value) => 
+    public static new CtxWriteDelegate<IlTypeDto> Write = (ctx, writer, value) => 
     {
-      writer.Write(value.Id);
+      CacheKey.Write(ctx, writer, value.Id);
       writer.Write(value.Name);
-      WriteIlFieldDtoList(ctx, writer, value.Fields);
+      WriteCacheKeyList(ctx, writer, value.GenericArgs);
+      writer.Write(value.IsGenericParam);
+      writer.Write(value.IsValueType);
+      writer.Write(value.IsManaged);
     };
-    public static  CtxWriteDelegate<List<IlFieldDto>> WriteIlFieldDtoList = IlFieldDto.Write.List();
+    public static  CtxWriteDelegate<List<CacheKey>> WriteCacheKeyList = CacheKey.Write.List();
     
     //constants
     
@@ -375,7 +872,7 @@ namespace JetBrains.Rider.Model
     {
       if (ReferenceEquals(null, other)) return false;
       if (ReferenceEquals(this, other)) return true;
-      return Id == other.Id && Name == other.Name && Fields.SequenceEqual(other.Fields);
+      return Equals(Id, other.Id) && Name == other.Name && GenericArgs.SequenceEqual(other.GenericArgs) && IsGenericParam == other.IsGenericParam && IsValueType == other.IsValueType && IsManaged == other.IsManaged;
     }
     //hash code trait
     public override int GetHashCode()
@@ -384,7 +881,10 @@ namespace JetBrains.Rider.Model
         var hash = 0;
         hash = hash * 31 + Id.GetHashCode();
         hash = hash * 31 + Name.GetHashCode();
-        hash = hash * 31 + Fields.ContentHashCode();
+        hash = hash * 31 + GenericArgs.ContentHashCode();
+        hash = hash * 31 + IsGenericParam.GetHashCode();
+        hash = hash * 31 + IsValueType.GetHashCode();
+        hash = hash * 31 + IsManaged.GetHashCode();
         return hash;
       }
     }
@@ -395,7 +895,10 @@ namespace JetBrains.Rider.Model
       using (printer.IndentCookie()) {
         printer.Print("id = "); Id.PrintEx(printer); printer.Println();
         printer.Print("name = "); Name.PrintEx(printer); printer.Println();
-        printer.Print("fields = "); Fields.PrintEx(printer); printer.Println();
+        printer.Print("genericArgs = "); GenericArgs.PrintEx(printer); printer.Println();
+        printer.Print("isGenericParam = "); IsGenericParam.PrintEx(printer); printer.Println();
+        printer.Print("isValueType = "); IsValueType.PrintEx(printer); printer.Println();
+        printer.Print("isManaged = "); IsManaged.PrintEx(printer); printer.Println();
       }
       printer.Print(")");
     }

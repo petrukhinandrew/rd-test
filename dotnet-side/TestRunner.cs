@@ -1,3 +1,4 @@
+using System.Reflection;
 using JetBrains.Collections.Viewable;
 using JetBrains.Lifetimes;
 using JetBrains.Rd;
@@ -6,6 +7,14 @@ using JetBrains.Rider.Model;
 using Timer = System.Timers.Timer;
 
 namespace dotnet_side;
+
+class IlAsm(Assembly asm, int id)
+{
+    public IlAsmDto toDto()
+    {
+        return new IlAsmDto();
+    }
+}
 
 public static class Program
 {

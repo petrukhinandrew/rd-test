@@ -36,46 +36,41 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:261</p>
+  /// <p>Generated from: Model.kt:14</p>
   /// </summary>
-  public class SimpleExtModel : RdExtBase
+  public class IlRoot : RdExtBase
   {
     //fields
     //public fields
-    [NotNull] public ISignal<Unit> Checker => _Checker;
     
     //private fields
-    [NotNull] private readonly RdSignal<Unit> _Checker;
-    
     //primary constructor
-    private SimpleExtModel(
-      [NotNull] RdSignal<Unit> checker
+    private IlRoot(
     )
     {
-      if (checker == null) throw new ArgumentNullException("checker");
-      
-      _Checker = checker;
-      BindableChildren.Add(new KeyValuePair<string, object>("checker", _Checker));
     }
     //secondary constructor
-    internal SimpleExtModel (
-    ) : this (
-      new RdSignal<Unit>(JetBrains.Rd.Impl.Serializers.ReadVoid, JetBrains.Rd.Impl.Serializers.WriteVoid)
-    ) {}
     //deconstruct trait
     //statics
     
     
     
-    protected override long SerializationHash => 5403836805080301444L;
+    protected override long SerializationHash => 3111946874287143L;
     
     protected override Action<ISerializers> Register => RegisterDeclaredTypesSerializers;
     public static void RegisterDeclaredTypesSerializers(ISerializers serializers)
     {
       
-      serializers.RegisterToplevelOnce(typeof(DemoRoot), DemoRoot.RegisterDeclaredTypesSerializers);
+      serializers.RegisterToplevelOnce(typeof(IlRoot), IlRoot.RegisterDeclaredTypesSerializers);
+      serializers.RegisterToplevelOnce(typeof(IlModel), IlModel.RegisterDeclaredTypesSerializers);
+      serializers.RegisterToplevelOnce(typeof(IlSigModel), IlSigModel.RegisterDeclaredTypesSerializers);
     }
     
+    public IlRoot(Lifetime lifetime, IProtocol protocol) : this()
+    {
+      Identify(protocol.Identities, RdId.Root.Mix("IlRoot"));
+      this.BindTopLevel(lifetime, protocol, "IlRoot");
+    }
     
     //constants
     
@@ -86,10 +81,7 @@ namespace JetBrains.Rider.Model
     //pretty print
     public override void Print(PrettyPrinter printer)
     {
-      printer.Println("SimpleExtModel (");
-      using (printer.IndentCookie()) {
-        printer.Print("checker = "); _Checker.PrintEx(printer); printer.Println();
-      }
+      printer.Println("IlRoot (");
       printer.Print(")");
     }
     //toString
@@ -98,13 +90,6 @@ namespace JetBrains.Rider.Model
       var printer = new SingleLinePrettyPrinter();
       Print(printer);
       return printer.ToString();
-    }
-  }
-  public static class SimpleModelSimpleExtModelEx
-   {
-    public static SimpleExtModel GetSimpleExtModel(this SimpleModel simpleModel)
-    {
-      return simpleModel.GetOrCreateExtension("simpleExtModel", () => new SimpleExtModel());
     }
   }
 }

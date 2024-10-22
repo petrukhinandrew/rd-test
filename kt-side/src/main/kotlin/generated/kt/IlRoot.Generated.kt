@@ -16,37 +16,29 @@ import kotlin.jvm.JvmStatic
 
 
 /**
- * #### Generated from [Model.kt:15]
+ * #### Generated from [Model.kt:14]
  */
-class DemoRoot private constructor(
+class IlRoot private constructor(
 ) : RdExtBase() {
     //companion
     
     companion object : ISerializersOwner {
         
         override fun registerSerializersCore(serializers: ISerializers)  {
-            DemoRoot.register(serializers)
-            DemoModel.register(serializers)
+            IlRoot.register(serializers)
             IlModel.register(serializers)
-            LinksModel.register(serializers)
-            PrimitiveClassModel.register(serializers)
-            PrimitiveModel.register(serializers)
-//            SimpleModel.register(serializers)
-            ClassExtModel.register(serializers)
-            ExtModel.register(serializers)
             IlSigModel.register(serializers)
-//            SimpleExtModel.register(serializers)
         }
         
         
         
         
         
-        const val serializationHash = 2990580803186469991L
+        const val serializationHash = 3111946874287143L
         
     }
-    override val serializersOwner: ISerializersOwner get() = DemoRoot
-    override val serializationHash: Long get() = DemoRoot.serializationHash
+    override val serializersOwner: ISerializersOwner get() = IlRoot
+    override val serializationHash: Long get() = IlRoot.serializationHash
     
     //fields
     //methods
@@ -56,12 +48,12 @@ class DemoRoot private constructor(
     //hash code trait
     //pretty print
     override fun print(printer: PrettyPrinter)  {
-        printer.println("DemoRoot (")
+        printer.println("IlRoot (")
         printer.print(")")
     }
     //deepClone
-    override fun deepClone(): DemoRoot   {
-        return DemoRoot(
+    override fun deepClone(): IlRoot   {
+        return IlRoot(
         )
     }
     //contexts
