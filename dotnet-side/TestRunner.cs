@@ -8,14 +8,6 @@ using Timer = System.Timers.Timer;
 
 namespace dotnet_side;
 
-class IlAsm(Assembly asm, int id)
-{
-    public IlAsmDto toDto()
-    {
-        return new IlAsmDto();
-    }
-}
-
 public static class Program
 {
     public static void Main()
@@ -29,32 +21,7 @@ public static class Program
             var serializers = new Serializers();
             var protocol = new Protocol("client side", serializers, new Identities(idKind), scheduler, wire,
                 lifetime);
-            // var model = new PrimitiveModel(lifetime, protocol);
-            // var setInt = model.SetIntValue;
-            // setInt.Fire(1);
-            // var setStr = model.SetStrValue;
-            // setStr.Fire("hello");
-            // setInt.Fire(2);
-            // setStr.Fire("world");
 
-            // var model = new PrimitiveClassModel(lifetime, protocol);
-            // var structSignal = model.SetStruct;
-            // var simpleStruct = new SimpleStruct("123", 1);
-            // structSignal.Fire(simpleStruct);
-            // var structListSignal = model.MultipleStruct;
-            // var anotherSimpleStruct = new SimpleStruct("456", 2);
-            // structListSignal.Fire([simpleStruct, anotherSimpleStruct]);
-            // structSignal.Fire(anotherSimpleStruct);
-
-            // var model = new LinksModel(lifetime, protocol);
-            // var childA1 = new ChildA("child A1");
-            // var childA2 = new ChildA("child A2");
-            // var childB = new ChildB(1);
-            // var parent1 = new ParentInst(childA1, childB);
-            // var parent2 = new ParentInst(childA2, childB);
-            // model.ParentInsts.Fire([parent1, parent2]);
-            // var storage = new InstStorage([parent1, parent2], [childA1, childA2], [childB]);
-            // model.InstStorage.Fire([storage]);
 
             var ilModel = new IlModel(lifetime, protocol);
             var asmReq = ilModel.GetIlSigModel().AsmRequest;

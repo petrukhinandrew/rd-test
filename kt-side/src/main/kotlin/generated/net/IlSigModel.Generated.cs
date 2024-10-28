@@ -36,7 +36,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:71</p>
+  /// <p>Generated from: Model.kt:207</p>
   /// </summary>
   public class IlSigModel : RdExtBase
   {
@@ -122,7 +122,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:72</p>
+  /// <p>Generated from: Model.kt:208</p>
   /// </summary>
   public sealed class Request : IPrintable, IEquatable<Request>
   {

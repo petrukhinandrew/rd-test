@@ -16,7 +16,7 @@ import kotlin.jvm.JvmStatic
 
 
 /**
- * #### Generated from [Model.kt:14]
+ * #### Generated from [Model.kt:15]
  */
 class IlRoot private constructor(
 ) : RdExtBase() {
@@ -26,6 +26,7 @@ class IlRoot private constructor(
         
         override fun registerSerializersCore(serializers: ISerializers)  {
             IlRoot.register(serializers)
+            IlMethodBodyModel.register(serializers)
             IlModel.register(serializers)
             IlSigModel.register(serializers)
         }

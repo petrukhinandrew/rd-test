@@ -16,7 +16,7 @@ import kotlin.jvm.JvmStatic
 
 
 /**
- * #### Generated from [Model.kt:20]
+ * #### Generated from [Model.kt:21]
  */
 class IlModel private constructor(
 ) : RdExtBase() {
@@ -31,6 +31,10 @@ class IlModel private constructor(
             serializers.register(IlTypeDto)
             serializers.register(IlFieldDto)
             serializers.register(IlParameterDto)
+            serializers.register(IlVarDto)
+            serializers.register(IlLocalVarDto)
+            serializers.register(IlTempVarDto)
+            serializers.register(IlErrVarDto)
             serializers.register(IlMethodDto)
             serializers.register(IlDto_Unknown)
         }
@@ -53,7 +57,7 @@ class IlModel private constructor(
         }
         
         
-        const val serializationHash = 3940035886610741730L
+        const val serializationHash = 8838680866087314158L
         
     }
     override val serializersOwner: ISerializersOwner get() = IlModel
@@ -84,7 +88,7 @@ val IProtocol.ilModel get() = getOrCreateExtension(IlModel::class) { @Suppress("
 
 
 /**
- * #### Generated from [Model.kt:28]
+ * #### Generated from [Model.kt:29]
  */
 data class AsmCacheKey (
     val asm: Int
@@ -142,7 +146,7 @@ data class AsmCacheKey (
 
 
 /**
- * #### Generated from [Model.kt:22]
+ * #### Generated from [Model.kt:23]
  */
 data class CacheKey (
     val asm: Int,
@@ -212,7 +216,7 @@ data class CacheKey (
 
 
 /**
- * #### Generated from [Model.kt:33]
+ * #### Generated from [Model.kt:34]
  */
 class IlAsmDto (
     val id: AsmCacheKey,
@@ -279,7 +283,7 @@ class IlAsmDto (
 
 
 /**
- * #### Generated from [Model.kt:32]
+ * #### Generated from [Model.kt:33]
  */
 abstract class IlDto (
 ) : IPrintable {
@@ -362,7 +366,76 @@ class IlDto_Unknown (
 
 
 /**
- * #### Generated from [Model.kt:47]
+ * #### Generated from [Model.kt:71]
+ */
+class IlErrVarDto (
+    type: CacheKey,
+    index: Int
+) : IlVarDto (
+    type,
+    index
+) {
+    //companion
+    
+    companion object : IMarshaller<IlErrVarDto> {
+        override val _type: KClass<IlErrVarDto> = IlErrVarDto::class
+        
+        @Suppress("UNCHECKED_CAST")
+        override fun read(ctx: SerializationCtx, buffer: AbstractBuffer): IlErrVarDto  {
+            val type = CacheKey.read(ctx, buffer)
+            val index = buffer.readInt()
+            return IlErrVarDto(type, index)
+        }
+        
+        override fun write(ctx: SerializationCtx, buffer: AbstractBuffer, value: IlErrVarDto)  {
+            CacheKey.write(ctx, buffer, value.type)
+            buffer.writeInt(value.index)
+        }
+        
+        
+    }
+    //fields
+    //methods
+    //initializer
+    //secondary constructor
+    //equals trait
+    override fun equals(other: Any?): Boolean  {
+        if (this === other) return true
+        if (other == null || other::class != this::class) return false
+        
+        other as IlErrVarDto
+        
+        if (type != other.type) return false
+        if (index != other.index) return false
+        
+        return true
+    }
+    //hash code trait
+    override fun hashCode(): Int  {
+        var __r = 0
+        __r = __r*31 + type.hashCode()
+        __r = __r*31 + index.hashCode()
+        return __r
+    }
+    //pretty print
+    override fun print(printer: PrettyPrinter)  {
+        printer.println("IlErrVarDto (")
+        printer.indent {
+            print("type = "); type.print(printer); println()
+            print("index = "); index.print(printer); println()
+        }
+        printer.print(")")
+    }
+    
+    override fun toString() = PrettyPrinter().singleLine().also { print(it) }.toString()
+    //deepClone
+    //contexts
+    //threading
+}
+
+
+/**
+ * #### Generated from [Model.kt:48]
  */
 class IlFieldDto (
     val id: CacheKey,
@@ -447,14 +520,88 @@ class IlFieldDto (
 
 
 /**
- * #### Generated from [Model.kt:62]
+ * #### Generated from [Model.kt:67]
+ */
+class IlLocalVarDto (
+    type: CacheKey,
+    index: Int
+) : IlVarDto (
+    type,
+    index
+) {
+    //companion
+    
+    companion object : IMarshaller<IlLocalVarDto> {
+        override val _type: KClass<IlLocalVarDto> = IlLocalVarDto::class
+        
+        @Suppress("UNCHECKED_CAST")
+        override fun read(ctx: SerializationCtx, buffer: AbstractBuffer): IlLocalVarDto  {
+            val type = CacheKey.read(ctx, buffer)
+            val index = buffer.readInt()
+            return IlLocalVarDto(type, index)
+        }
+        
+        override fun write(ctx: SerializationCtx, buffer: AbstractBuffer, value: IlLocalVarDto)  {
+            CacheKey.write(ctx, buffer, value.type)
+            buffer.writeInt(value.index)
+        }
+        
+        
+    }
+    //fields
+    //methods
+    //initializer
+    //secondary constructor
+    //equals trait
+    override fun equals(other: Any?): Boolean  {
+        if (this === other) return true
+        if (other == null || other::class != this::class) return false
+        
+        other as IlLocalVarDto
+        
+        if (type != other.type) return false
+        if (index != other.index) return false
+        
+        return true
+    }
+    //hash code trait
+    override fun hashCode(): Int  {
+        var __r = 0
+        __r = __r*31 + type.hashCode()
+        __r = __r*31 + index.hashCode()
+        return __r
+    }
+    //pretty print
+    override fun print(printer: PrettyPrinter)  {
+        printer.println("IlLocalVarDto (")
+        printer.indent {
+            print("type = "); type.print(printer); println()
+            print("index = "); index.print(printer); println()
+        }
+        printer.print(")")
+    }
+    
+    override fun toString() = PrettyPrinter().singleLine().also { print(it) }.toString()
+    //deepClone
+    //contexts
+    //threading
+}
+
+
+/**
+ * #### Generated from [Model.kt:72]
  */
 class IlMethodDto (
     val id: CacheKey,
-    val declType: CacheKey,
-    val returnType: CacheKey,
+    val declType: CacheKey?,
+    val returnType: CacheKey?,
     val name: String,
-    val parameters: List<IlParameterDto>
+    val parameters: List<IlParameterDto>,
+    val resolved: Boolean,
+    val locals: List<IlLocalVarDto>,
+    val temps: List<IlTempVarDto>,
+    val errs: List<IlErrVarDto>,
+    val body: List<IlStmtDto>
 ) : IlDto (
 ) {
     //companion
@@ -465,19 +612,29 @@ class IlMethodDto (
         @Suppress("UNCHECKED_CAST")
         override fun read(ctx: SerializationCtx, buffer: AbstractBuffer): IlMethodDto  {
             val id = CacheKey.read(ctx, buffer)
-            val declType = CacheKey.read(ctx, buffer)
-            val returnType = CacheKey.read(ctx, buffer)
+            val declType = buffer.readNullable { CacheKey.read(ctx, buffer) }
+            val returnType = buffer.readNullable { CacheKey.read(ctx, buffer) }
             val name = buffer.readString()
             val parameters = buffer.readList { IlParameterDto.read(ctx, buffer) }
-            return IlMethodDto(id, declType, returnType, name, parameters)
+            val resolved = buffer.readBool()
+            val locals = buffer.readList { IlLocalVarDto.read(ctx, buffer) }
+            val temps = buffer.readList { IlTempVarDto.read(ctx, buffer) }
+            val errs = buffer.readList { IlErrVarDto.read(ctx, buffer) }
+            val body = buffer.readList { ctx.serializers.readPolymorphic<IlStmtDto>(ctx, buffer, IlStmtDto) }
+            return IlMethodDto(id, declType, returnType, name, parameters, resolved, locals, temps, errs, body)
         }
         
         override fun write(ctx: SerializationCtx, buffer: AbstractBuffer, value: IlMethodDto)  {
             CacheKey.write(ctx, buffer, value.id)
-            CacheKey.write(ctx, buffer, value.declType)
-            CacheKey.write(ctx, buffer, value.returnType)
+            buffer.writeNullable(value.declType) { CacheKey.write(ctx, buffer, it) }
+            buffer.writeNullable(value.returnType) { CacheKey.write(ctx, buffer, it) }
             buffer.writeString(value.name)
             buffer.writeList(value.parameters) { v -> IlParameterDto.write(ctx, buffer, v) }
+            buffer.writeBool(value.resolved)
+            buffer.writeList(value.locals) { v -> IlLocalVarDto.write(ctx, buffer, v) }
+            buffer.writeList(value.temps) { v -> IlTempVarDto.write(ctx, buffer, v) }
+            buffer.writeList(value.errs) { v -> IlErrVarDto.write(ctx, buffer, v) }
+            buffer.writeList(value.body) { v -> ctx.serializers.writePolymorphic(ctx, buffer, v) }
         }
         
         
@@ -498,6 +655,11 @@ class IlMethodDto (
         if (returnType != other.returnType) return false
         if (name != other.name) return false
         if (parameters != other.parameters) return false
+        if (resolved != other.resolved) return false
+        if (locals != other.locals) return false
+        if (temps != other.temps) return false
+        if (errs != other.errs) return false
+        if (body != other.body) return false
         
         return true
     }
@@ -505,10 +667,15 @@ class IlMethodDto (
     override fun hashCode(): Int  {
         var __r = 0
         __r = __r*31 + id.hashCode()
-        __r = __r*31 + declType.hashCode()
-        __r = __r*31 + returnType.hashCode()
+        __r = __r*31 + if (declType != null) declType.hashCode() else 0
+        __r = __r*31 + if (returnType != null) returnType.hashCode() else 0
         __r = __r*31 + name.hashCode()
         __r = __r*31 + parameters.hashCode()
+        __r = __r*31 + resolved.hashCode()
+        __r = __r*31 + locals.hashCode()
+        __r = __r*31 + temps.hashCode()
+        __r = __r*31 + errs.hashCode()
+        __r = __r*31 + body.hashCode()
         return __r
     }
     //pretty print
@@ -520,6 +687,11 @@ class IlMethodDto (
             print("returnType = "); returnType.print(printer); println()
             print("name = "); name.print(printer); println()
             print("parameters = "); parameters.print(printer); println()
+            print("resolved = "); resolved.print(printer); println()
+            print("locals = "); locals.print(printer); println()
+            print("temps = "); temps.print(printer); println()
+            print("errs = "); errs.print(printer); println()
+            print("body = "); body.print(printer); println()
         }
         printer.print(")")
     }
@@ -532,7 +704,7 @@ class IlMethodDto (
 
 
 /**
- * #### Generated from [Model.kt:55]
+ * #### Generated from [Model.kt:56]
  */
 class IlParameterDto (
     val index: Int,
@@ -611,7 +783,76 @@ class IlParameterDto (
 
 
 /**
- * #### Generated from [Model.kt:38]
+ * #### Generated from [Model.kt:69]
+ */
+class IlTempVarDto (
+    type: CacheKey,
+    index: Int
+) : IlVarDto (
+    type,
+    index
+) {
+    //companion
+    
+    companion object : IMarshaller<IlTempVarDto> {
+        override val _type: KClass<IlTempVarDto> = IlTempVarDto::class
+        
+        @Suppress("UNCHECKED_CAST")
+        override fun read(ctx: SerializationCtx, buffer: AbstractBuffer): IlTempVarDto  {
+            val type = CacheKey.read(ctx, buffer)
+            val index = buffer.readInt()
+            return IlTempVarDto(type, index)
+        }
+        
+        override fun write(ctx: SerializationCtx, buffer: AbstractBuffer, value: IlTempVarDto)  {
+            CacheKey.write(ctx, buffer, value.type)
+            buffer.writeInt(value.index)
+        }
+        
+        
+    }
+    //fields
+    //methods
+    //initializer
+    //secondary constructor
+    //equals trait
+    override fun equals(other: Any?): Boolean  {
+        if (this === other) return true
+        if (other == null || other::class != this::class) return false
+        
+        other as IlTempVarDto
+        
+        if (type != other.type) return false
+        if (index != other.index) return false
+        
+        return true
+    }
+    //hash code trait
+    override fun hashCode(): Int  {
+        var __r = 0
+        __r = __r*31 + type.hashCode()
+        __r = __r*31 + index.hashCode()
+        return __r
+    }
+    //pretty print
+    override fun print(printer: PrettyPrinter)  {
+        printer.println("IlTempVarDto (")
+        printer.indent {
+            print("type = "); type.print(printer); println()
+            print("index = "); index.print(printer); println()
+        }
+        printer.print(")")
+    }
+    
+    override fun toString() = PrettyPrinter().singleLine().also { print(it) }.toString()
+    //deepClone
+    //contexts
+    //threading
+}
+
+
+/**
+ * #### Generated from [Model.kt:39]
  */
 class IlTypeDto (
     val id: CacheKey,
@@ -690,6 +931,73 @@ class IlTypeDto (
             print("isGenericParam = "); isGenericParam.print(printer); println()
             print("isValueType = "); isValueType.print(printer); println()
             print("isManaged = "); isManaged.print(printer); println()
+        }
+        printer.print(")")
+    }
+    
+    override fun toString() = PrettyPrinter().singleLine().also { print(it) }.toString()
+    //deepClone
+    //contexts
+    //threading
+}
+
+
+/**
+ * #### Generated from [Model.kt:62]
+ */
+class IlVarDto (
+    val type: CacheKey,
+    val index: Int
+) : IlDto (
+) {
+    //companion
+    
+    companion object : IMarshaller<IlVarDto> {
+        override val _type: KClass<IlVarDto> = IlVarDto::class
+        
+        @Suppress("UNCHECKED_CAST")
+        override fun read(ctx: SerializationCtx, buffer: AbstractBuffer): IlVarDto  {
+            val type = CacheKey.read(ctx, buffer)
+            val index = buffer.readInt()
+            return IlVarDto(type, index)
+        }
+        
+        override fun write(ctx: SerializationCtx, buffer: AbstractBuffer, value: IlVarDto)  {
+            CacheKey.write(ctx, buffer, value.type)
+            buffer.writeInt(value.index)
+        }
+        
+        
+    }
+    //fields
+    //methods
+    //initializer
+    //secondary constructor
+    //equals trait
+    override fun equals(other: Any?): Boolean  {
+        if (this === other) return true
+        if (other == null || other::class != this::class) return false
+        
+        other as IlVarDto
+        
+        if (type != other.type) return false
+        if (index != other.index) return false
+        
+        return true
+    }
+    //hash code trait
+    override fun hashCode(): Int  {
+        var __r = 0
+        __r = __r*31 + type.hashCode()
+        __r = __r*31 + index.hashCode()
+        return __r
+    }
+    //pretty print
+    override fun print(printer: PrettyPrinter)  {
+        printer.println("IlVarDto (")
+        printer.indent {
+            print("type = "); type.print(printer); println()
+            print("index = "); index.print(printer); println()
         }
         printer.print(")")
     }

@@ -36,7 +36,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:14</p>
+  /// <p>Generated from: Model.kt:15</p>
   /// </summary>
   public class IlRoot : RdExtBase
   {
@@ -62,6 +62,7 @@ namespace JetBrains.Rider.Model
     {
       
       serializers.RegisterToplevelOnce(typeof(IlRoot), IlRoot.RegisterDeclaredTypesSerializers);
+      serializers.RegisterToplevelOnce(typeof(IlMethodBodyModel), IlMethodBodyModel.RegisterDeclaredTypesSerializers);
       serializers.RegisterToplevelOnce(typeof(IlModel), IlModel.RegisterDeclaredTypesSerializers);
       serializers.RegisterToplevelOnce(typeof(IlSigModel), IlSigModel.RegisterDeclaredTypesSerializers);
     }

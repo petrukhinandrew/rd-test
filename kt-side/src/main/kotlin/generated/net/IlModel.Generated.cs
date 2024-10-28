@@ -36,7 +36,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:20</p>
+  /// <p>Generated from: Model.kt:21</p>
   /// </summary>
   public class IlModel : RdExtBase
   {
@@ -55,7 +55,7 @@ namespace JetBrains.Rider.Model
     
     
     
-    protected override long SerializationHash => 3940035886610741730L;
+    protected override long SerializationHash => 8838680866087314158L;
     
     protected override Action<ISerializers> Register => RegisterDeclaredTypesSerializers;
     public static void RegisterDeclaredTypesSerializers(ISerializers serializers)
@@ -64,6 +64,10 @@ namespace JetBrains.Rider.Model
       serializers.Register(IlTypeDto.Read, IlTypeDto.Write);
       serializers.Register(IlFieldDto.Read, IlFieldDto.Write);
       serializers.Register(IlParameterDto.Read, IlParameterDto.Write);
+      serializers.Register(IlVarDto.Read, IlVarDto.Write);
+      serializers.Register(IlLocalVarDto.Read, IlLocalVarDto.Write);
+      serializers.Register(IlTempVarDto.Read, IlTempVarDto.Write);
+      serializers.Register(IlErrVarDto.Read, IlErrVarDto.Write);
       serializers.Register(IlMethodDto.Read, IlMethodDto.Write);
       serializers.Register(IlDto_Unknown.Read, IlDto_Unknown.Write);
       
@@ -99,7 +103,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:28</p>
+  /// <p>Generated from: Model.kt:29</p>
   /// </summary>
   public sealed class AsmCacheKey : IPrintable, IEquatable<AsmCacheKey>
   {
@@ -182,7 +186,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:22</p>
+  /// <p>Generated from: Model.kt:23</p>
   /// </summary>
   public sealed class CacheKey : IPrintable, IEquatable<CacheKey>
   {
@@ -281,7 +285,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:33</p>
+  /// <p>Generated from: Model.kt:34</p>
   /// </summary>
   public sealed class IlAsmDto : IlDto
   {
@@ -370,7 +374,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:32</p>
+  /// <p>Generated from: Model.kt:33</p>
   /// </summary>
   public abstract class IlDto{
     //fields
@@ -461,7 +465,92 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:47</p>
+  /// <p>Generated from: Model.kt:71</p>
+  /// </summary>
+  public sealed class IlErrVarDto : IlVarDto
+  {
+    //fields
+    //public fields
+    
+    //private fields
+    //primary constructor
+    public IlErrVarDto(
+      [NotNull] CacheKey type,
+      int index
+    ) : base (
+      type,
+      index
+     ) 
+    {
+    }
+    //secondary constructor
+    //deconstruct trait
+    //statics
+    
+    public static new CtxReadDelegate<IlErrVarDto> Read = (ctx, reader) => 
+    {
+      var type = CacheKey.Read(ctx, reader);
+      var index = reader.ReadInt();
+      var _result = new IlErrVarDto(type, index);
+      return _result;
+    };
+    
+    public static new CtxWriteDelegate<IlErrVarDto> Write = (ctx, writer, value) => 
+    {
+      CacheKey.Write(ctx, writer, value.Type);
+      writer.Write(value.Index);
+    };
+    
+    //constants
+    
+    //custom body
+    //methods
+    //equals trait
+    public override bool Equals(object obj)
+    {
+      if (ReferenceEquals(null, obj)) return false;
+      if (ReferenceEquals(this, obj)) return true;
+      if (obj.GetType() != GetType()) return false;
+      return Equals((IlErrVarDto) obj);
+    }
+    public bool Equals(IlErrVarDto other)
+    {
+      if (ReferenceEquals(null, other)) return false;
+      if (ReferenceEquals(this, other)) return true;
+      return Equals(Type, other.Type) && Index == other.Index;
+    }
+    //hash code trait
+    public override int GetHashCode()
+    {
+      unchecked {
+        var hash = 0;
+        hash = hash * 31 + Type.GetHashCode();
+        hash = hash * 31 + Index.GetHashCode();
+        return hash;
+      }
+    }
+    //pretty print
+    public void Print(PrettyPrinter printer)
+    {
+      printer.Println("IlErrVarDto (");
+      using (printer.IndentCookie()) {
+        printer.Print("type = "); Type.PrintEx(printer); printer.Println();
+        printer.Print("index = "); Index.PrintEx(printer); printer.Println();
+      }
+      printer.Print(")");
+    }
+    //toString
+    public override string ToString()
+    {
+      var printer = new SingleLinePrettyPrinter();
+      Print(printer);
+      return printer.ToString();
+    }
+  }
+  
+  
+  /// <summary>
+  /// <p>Generated from: Model.kt:48</p>
   /// </summary>
   public sealed class IlFieldDto : IlDto
   {
@@ -573,39 +662,141 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:62</p>
+  /// <p>Generated from: Model.kt:67</p>
+  /// </summary>
+  public sealed class IlLocalVarDto : IlVarDto
+  {
+    //fields
+    //public fields
+    
+    //private fields
+    //primary constructor
+    public IlLocalVarDto(
+      [NotNull] CacheKey type,
+      int index
+    ) : base (
+      type,
+      index
+     ) 
+    {
+    }
+    //secondary constructor
+    //deconstruct trait
+    //statics
+    
+    public static new CtxReadDelegate<IlLocalVarDto> Read = (ctx, reader) => 
+    {
+      var type = CacheKey.Read(ctx, reader);
+      var index = reader.ReadInt();
+      var _result = new IlLocalVarDto(type, index);
+      return _result;
+    };
+    
+    public static new CtxWriteDelegate<IlLocalVarDto> Write = (ctx, writer, value) => 
+    {
+      CacheKey.Write(ctx, writer, value.Type);
+      writer.Write(value.Index);
+    };
+    
+    //constants
+    
+    //custom body
+    //methods
+    //equals trait
+    public override bool Equals(object obj)
+    {
+      if (ReferenceEquals(null, obj)) return false;
+      if (ReferenceEquals(this, obj)) return true;
+      if (obj.GetType() != GetType()) return false;
+      return Equals((IlLocalVarDto) obj);
+    }
+    public bool Equals(IlLocalVarDto other)
+    {
+      if (ReferenceEquals(null, other)) return false;
+      if (ReferenceEquals(this, other)) return true;
+      return Equals(Type, other.Type) && Index == other.Index;
+    }
+    //hash code trait
+    public override int GetHashCode()
+    {
+      unchecked {
+        var hash = 0;
+        hash = hash * 31 + Type.GetHashCode();
+        hash = hash * 31 + Index.GetHashCode();
+        return hash;
+      }
+    }
+    //pretty print
+    public void Print(PrettyPrinter printer)
+    {
+      printer.Println("IlLocalVarDto (");
+      using (printer.IndentCookie()) {
+        printer.Print("type = "); Type.PrintEx(printer); printer.Println();
+        printer.Print("index = "); Index.PrintEx(printer); printer.Println();
+      }
+      printer.Print(")");
+    }
+    //toString
+    public override string ToString()
+    {
+      var printer = new SingleLinePrettyPrinter();
+      Print(printer);
+      return printer.ToString();
+    }
+  }
+  
+  
+  /// <summary>
+  /// <p>Generated from: Model.kt:72</p>
   /// </summary>
   public sealed class IlMethodDto : IlDto
   {
     //fields
     //public fields
     [NotNull] public CacheKey Id {get; private set;}
-    [NotNull] public CacheKey DeclType {get; private set;}
-    [NotNull] public CacheKey ReturnType {get; private set;}
+    [CanBeNull] public CacheKey DeclType {get; private set;}
+    [CanBeNull] public CacheKey ReturnType {get; private set;}
     [NotNull] public string Name {get; private set;}
     [NotNull] public List<IlParameterDto> Parameters {get; private set;}
+    public bool Resolved {get; private set;}
+    [NotNull] public List<IlLocalVarDto> Locals {get; private set;}
+    [NotNull] public List<IlTempVarDto> Temps {get; private set;}
+    [NotNull] public List<IlErrVarDto> Errs {get; private set;}
+    [NotNull] public List<IlStmtDto> Body {get; private set;}
     
     //private fields
     //primary constructor
     public IlMethodDto(
       [NotNull] CacheKey id,
-      [NotNull] CacheKey declType,
-      [NotNull] CacheKey returnType,
+      [CanBeNull] CacheKey declType,
+      [CanBeNull] CacheKey returnType,
       [NotNull] string name,
-      [NotNull] List<IlParameterDto> parameters
+      [NotNull] List<IlParameterDto> parameters,
+      bool resolved,
+      [NotNull] List<IlLocalVarDto> locals,
+      [NotNull] List<IlTempVarDto> temps,
+      [NotNull] List<IlErrVarDto> errs,
+      [NotNull] List<IlStmtDto> body
     )
     {
       if (id == null) throw new ArgumentNullException("id");
-      if (declType == null) throw new ArgumentNullException("declType");
-      if (returnType == null) throw new ArgumentNullException("returnType");
       if (name == null) throw new ArgumentNullException("name");
       if (parameters == null) throw new ArgumentNullException("parameters");
+      if (locals == null) throw new ArgumentNullException("locals");
+      if (temps == null) throw new ArgumentNullException("temps");
+      if (errs == null) throw new ArgumentNullException("errs");
+      if (body == null) throw new ArgumentNullException("body");
       
       Id = id;
       DeclType = declType;
       ReturnType = returnType;
       Name = name;
       Parameters = parameters;
+      Resolved = resolved;
+      Locals = locals;
+      Temps = temps;
+      Errs = errs;
+      Body = body;
     }
     //secondary constructor
     //deconstruct trait
@@ -614,24 +805,44 @@ namespace JetBrains.Rider.Model
     public static new CtxReadDelegate<IlMethodDto> Read = (ctx, reader) => 
     {
       var id = CacheKey.Read(ctx, reader);
-      var declType = CacheKey.Read(ctx, reader);
-      var returnType = CacheKey.Read(ctx, reader);
+      var declType = ReadCacheKeyNullable(ctx, reader);
+      var returnType = ReadCacheKeyNullable(ctx, reader);
       var name = reader.ReadString();
       var parameters = ReadIlParameterDtoList(ctx, reader);
-      var _result = new IlMethodDto(id, declType, returnType, name, parameters);
+      var resolved = reader.ReadBool();
+      var locals = ReadIlLocalVarDtoList(ctx, reader);
+      var temps = ReadIlTempVarDtoList(ctx, reader);
+      var errs = ReadIlErrVarDtoList(ctx, reader);
+      var body = ReadIlStmtDtoList(ctx, reader);
+      var _result = new IlMethodDto(id, declType, returnType, name, parameters, resolved, locals, temps, errs, body);
       return _result;
     };
+    public static CtxReadDelegate<CacheKey> ReadCacheKeyNullable = CacheKey.Read.NullableClass();
     public static CtxReadDelegate<List<IlParameterDto>> ReadIlParameterDtoList = IlParameterDto.Read.List();
+    public static CtxReadDelegate<List<IlLocalVarDto>> ReadIlLocalVarDtoList = IlLocalVarDto.Read.List();
+    public static CtxReadDelegate<List<IlTempVarDto>> ReadIlTempVarDtoList = IlTempVarDto.Read.List();
+    public static CtxReadDelegate<List<IlErrVarDto>> ReadIlErrVarDtoList = IlErrVarDto.Read.List();
+    public static CtxReadDelegate<List<IlStmtDto>> ReadIlStmtDtoList = IlStmtDto.Read.List();
     
     public static new CtxWriteDelegate<IlMethodDto> Write = (ctx, writer, value) => 
     {
       CacheKey.Write(ctx, writer, value.Id);
-      CacheKey.Write(ctx, writer, value.DeclType);
-      CacheKey.Write(ctx, writer, value.ReturnType);
+      WriteCacheKeyNullable(ctx, writer, value.DeclType);
+      WriteCacheKeyNullable(ctx, writer, value.ReturnType);
       writer.Write(value.Name);
       WriteIlParameterDtoList(ctx, writer, value.Parameters);
+      writer.Write(value.Resolved);
+      WriteIlLocalVarDtoList(ctx, writer, value.Locals);
+      WriteIlTempVarDtoList(ctx, writer, value.Temps);
+      WriteIlErrVarDtoList(ctx, writer, value.Errs);
+      WriteIlStmtDtoList(ctx, writer, value.Body);
     };
+    public static  CtxWriteDelegate<CacheKey> WriteCacheKeyNullable = CacheKey.Write.NullableClass();
     public static  CtxWriteDelegate<List<IlParameterDto>> WriteIlParameterDtoList = IlParameterDto.Write.List();
+    public static  CtxWriteDelegate<List<IlLocalVarDto>> WriteIlLocalVarDtoList = IlLocalVarDto.Write.List();
+    public static  CtxWriteDelegate<List<IlTempVarDto>> WriteIlTempVarDtoList = IlTempVarDto.Write.List();
+    public static  CtxWriteDelegate<List<IlErrVarDto>> WriteIlErrVarDtoList = IlErrVarDto.Write.List();
+    public static  CtxWriteDelegate<List<IlStmtDto>> WriteIlStmtDtoList = IlStmtDto.Write.List();
     
     //constants
     
@@ -649,7 +860,7 @@ namespace JetBrains.Rider.Model
     {
       if (ReferenceEquals(null, other)) return false;
       if (ReferenceEquals(this, other)) return true;
-      return Equals(Id, other.Id) && Equals(DeclType, other.DeclType) && Equals(ReturnType, other.ReturnType) && Name == other.Name && Parameters.SequenceEqual(other.Parameters);
+      return Equals(Id, other.Id) && Equals(DeclType, other.DeclType) && Equals(ReturnType, other.ReturnType) && Name == other.Name && Parameters.SequenceEqual(other.Parameters) && Resolved == other.Resolved && Locals.SequenceEqual(other.Locals) && Temps.SequenceEqual(other.Temps) && Errs.SequenceEqual(other.Errs) && Body.SequenceEqual(other.Body);
     }
     //hash code trait
     public override int GetHashCode()
@@ -657,10 +868,15 @@ namespace JetBrains.Rider.Model
       unchecked {
         var hash = 0;
         hash = hash * 31 + Id.GetHashCode();
-        hash = hash * 31 + DeclType.GetHashCode();
-        hash = hash * 31 + ReturnType.GetHashCode();
+        hash = hash * 31 + (DeclType != null ? DeclType.GetHashCode() : 0);
+        hash = hash * 31 + (ReturnType != null ? ReturnType.GetHashCode() : 0);
         hash = hash * 31 + Name.GetHashCode();
         hash = hash * 31 + Parameters.ContentHashCode();
+        hash = hash * 31 + Resolved.GetHashCode();
+        hash = hash * 31 + Locals.ContentHashCode();
+        hash = hash * 31 + Temps.ContentHashCode();
+        hash = hash * 31 + Errs.ContentHashCode();
+        hash = hash * 31 + Body.ContentHashCode();
         return hash;
       }
     }
@@ -674,6 +890,11 @@ namespace JetBrains.Rider.Model
         printer.Print("returnType = "); ReturnType.PrintEx(printer); printer.Println();
         printer.Print("name = "); Name.PrintEx(printer); printer.Println();
         printer.Print("parameters = "); Parameters.PrintEx(printer); printer.Println();
+        printer.Print("resolved = "); Resolved.PrintEx(printer); printer.Println();
+        printer.Print("locals = "); Locals.PrintEx(printer); printer.Println();
+        printer.Print("temps = "); Temps.PrintEx(printer); printer.Println();
+        printer.Print("errs = "); Errs.PrintEx(printer); printer.Println();
+        printer.Print("body = "); Body.PrintEx(printer); printer.Println();
       }
       printer.Print(")");
     }
@@ -688,7 +909,7 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:55</p>
+  /// <p>Generated from: Model.kt:56</p>
   /// </summary>
   public sealed class IlParameterDto : IlDto
   {
@@ -793,7 +1014,92 @@ namespace JetBrains.Rider.Model
   
   
   /// <summary>
-  /// <p>Generated from: Model.kt:38</p>
+  /// <p>Generated from: Model.kt:69</p>
+  /// </summary>
+  public sealed class IlTempVarDto : IlVarDto
+  {
+    //fields
+    //public fields
+    
+    //private fields
+    //primary constructor
+    public IlTempVarDto(
+      [NotNull] CacheKey type,
+      int index
+    ) : base (
+      type,
+      index
+     ) 
+    {
+    }
+    //secondary constructor
+    //deconstruct trait
+    //statics
+    
+    public static new CtxReadDelegate<IlTempVarDto> Read = (ctx, reader) => 
+    {
+      var type = CacheKey.Read(ctx, reader);
+      var index = reader.ReadInt();
+      var _result = new IlTempVarDto(type, index);
+      return _result;
+    };
+    
+    public static new CtxWriteDelegate<IlTempVarDto> Write = (ctx, writer, value) => 
+    {
+      CacheKey.Write(ctx, writer, value.Type);
+      writer.Write(value.Index);
+    };
+    
+    //constants
+    
+    //custom body
+    //methods
+    //equals trait
+    public override bool Equals(object obj)
+    {
+      if (ReferenceEquals(null, obj)) return false;
+      if (ReferenceEquals(this, obj)) return true;
+      if (obj.GetType() != GetType()) return false;
+      return Equals((IlTempVarDto) obj);
+    }
+    public bool Equals(IlTempVarDto other)
+    {
+      if (ReferenceEquals(null, other)) return false;
+      if (ReferenceEquals(this, other)) return true;
+      return Equals(Type, other.Type) && Index == other.Index;
+    }
+    //hash code trait
+    public override int GetHashCode()
+    {
+      unchecked {
+        var hash = 0;
+        hash = hash * 31 + Type.GetHashCode();
+        hash = hash * 31 + Index.GetHashCode();
+        return hash;
+      }
+    }
+    //pretty print
+    public void Print(PrettyPrinter printer)
+    {
+      printer.Println("IlTempVarDto (");
+      using (printer.IndentCookie()) {
+        printer.Print("type = "); Type.PrintEx(printer); printer.Println();
+        printer.Print("index = "); Index.PrintEx(printer); printer.Println();
+      }
+      printer.Print(")");
+    }
+    //toString
+    public override string ToString()
+    {
+      var printer = new SingleLinePrettyPrinter();
+      Print(printer);
+      return printer.ToString();
+    }
+  }
+  
+  
+  /// <summary>
+  /// <p>Generated from: Model.kt:39</p>
   /// </summary>
   public sealed class IlTypeDto : IlDto
   {
@@ -899,6 +1205,94 @@ namespace JetBrains.Rider.Model
         printer.Print("isGenericParam = "); IsGenericParam.PrintEx(printer); printer.Println();
         printer.Print("isValueType = "); IsValueType.PrintEx(printer); printer.Println();
         printer.Print("isManaged = "); IsManaged.PrintEx(printer); printer.Println();
+      }
+      printer.Print(")");
+    }
+    //toString
+    public override string ToString()
+    {
+      var printer = new SingleLinePrettyPrinter();
+      Print(printer);
+      return printer.ToString();
+    }
+  }
+  
+  
+  /// <summary>
+  /// <p>Generated from: Model.kt:62</p>
+  /// </summary>
+  public sealed class IlVarDto : IlDto
+  {
+    //fields
+    //public fields
+    [NotNull] public CacheKey Type {get; private set;}
+    public int Index {get; private set;}
+    
+    //private fields
+    //primary constructor
+    public IlVarDto(
+      [NotNull] CacheKey type,
+      int index
+    )
+    {
+      if (type == null) throw new ArgumentNullException("type");
+      
+      Type = type;
+      Index = index;
+    }
+    //secondary constructor
+    //deconstruct trait
+    //statics
+    
+    public static new CtxReadDelegate<IlVarDto> Read = (ctx, reader) => 
+    {
+      var type = CacheKey.Read(ctx, reader);
+      var index = reader.ReadInt();
+      var _result = new IlVarDto(type, index);
+      return _result;
+    };
+    
+    public static new CtxWriteDelegate<IlVarDto> Write = (ctx, writer, value) => 
+    {
+      CacheKey.Write(ctx, writer, value.Type);
+      writer.Write(value.Index);
+    };
+    
+    //constants
+    
+    //custom body
+    //methods
+    //equals trait
+    public override bool Equals(object obj)
+    {
+      if (ReferenceEquals(null, obj)) return false;
+      if (ReferenceEquals(this, obj)) return true;
+      if (obj.GetType() != GetType()) return false;
+      return Equals((IlVarDto) obj);
+    }
+    public bool Equals(IlVarDto other)
+    {
+      if (ReferenceEquals(null, other)) return false;
+      if (ReferenceEquals(this, other)) return true;
+      return Equals(Type, other.Type) && Index == other.Index;
+    }
+    //hash code trait
+    public override int GetHashCode()
+    {
+      unchecked {
+        var hash = 0;
+        hash = hash * 31 + Type.GetHashCode();
+        hash = hash * 31 + Index.GetHashCode();
+        return hash;
+      }
+    }
+    //pretty print
+    public void Print(PrettyPrinter printer)
+    {
+      printer.Println("IlVarDto (");
+      using (printer.IndentCookie()) {
+        printer.Print("type = "); Type.PrintEx(printer); printer.Println();
+        printer.Print("index = "); Index.PrintEx(printer); printer.Println();
       }
       printer.Print(")");
     }
